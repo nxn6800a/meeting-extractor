@@ -1,0 +1,214 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="Meeting Extractor">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="theme-color" content="#17324D">
+<link rel="manifest" href="data:application/manifest+json,{&quot;name&quot;:&quot;Meeting Extractor&quot;,&quot;short_name&quot;:&quot;Meeting Extractor&quot;,&quot;display&quot;:&quot;standalone&quot;,&quot;background_color&quot;:&quot;#F4F7F9&quot;,&quot;theme_color&quot;:&quot;#17324D&quot;,&quot;start_url&quot;:&quot;.&quot;}">
+<title>Meeting Extractor — Meeting Brief</title>
+<style>
+:root{
+  --site-primary:#17324D;
+  --site-secondary:#2C6E7F;
+  --site-background:#F4F7F9;
+  --site-on-primary:#FFFFFF;
+  --site-on-secondary:#FFFFFF;
+  --site-on-background:#17212B;
+  --site-font-body:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  --site-font-heading:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  --site-heading-scale:1;
+  --site-spacing-scale:1;
+  --site-radius-scale:1;
+  --site-decoration-opacity:1;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;touch-action:manipulation}
+body{margin:0;font-family:var(--site-font-body);color:var(--site-on-background);background:var(--site-background)}
+#app{min-height:100vh;background:var(--site-background)}
+header{background:var(--site-primary);color:var(--site-on-primary);padding:calc(18px * var(--site-spacing-scale)) calc(24px * var(--site-spacing-scale))}
+.header-inner{max-width:1180px;margin:auto;display:flex;align-items:center;justify-content:space-between;gap:20px}
+.brand{display:flex;align-items:center;gap:12px}
+.logo{width:40px;height:40px;border-radius:12px;background:#fff;color:var(--site-primary);display:grid;place-items:center;font-weight:800}
+h1{font-size:calc(25px * var(--site-heading-scale));margin:0;font-family:var(--site-font-heading)}
+.subtitle{opacity:.78;font-size:13px;margin-top:3px}
+.badge{font-size:12px;border:1px solid rgba(255,255,255,.25);padding:7px 11px;border-radius:999px}
+main{max-width:900px;margin:auto;padding:calc(24px * var(--site-spacing-scale))}
+.grid{display:grid;grid-template-columns:1fr;gap:16px}
+.card{background:#fff;border:1px solid #DCE4EA;border-radius:calc(16px * var(--site-radius-scale));padding:22px;box-shadow:0 5px 18px rgba(22,43,60,.05)}
+.card h2{font-size:17px;margin:0 0 7px}
+.card p{font-size:13px;line-height:1.5;color:#5B6975;margin:0 0 18px}
+label{font-size:12px;font-weight:700;display:block;margin:15px 0 7px}
+textarea,input{width:100%;border:1px solid #CDD8DF;border-radius:10px;padding:11px;font:inherit;background:#FBFCFD}
+textarea{min-height:150px;resize:vertical}
+input:focus,textarea:focus{outline:3px solid rgba(44,110,127,.14);border-color:var(--site-secondary)}
+.topic-list{display:flex;flex-wrap:wrap;gap:7px;margin:9px 0}
+.topic{background:#EAF3F5;color:#235667;padding:6px 9px;border-radius:999px;font-size:12px}
+.actions{display:flex;gap:8px;margin-top:17px}
+button{border:0;border-radius:10px;padding:13px 14px;font-weight:700;cursor:pointer;touch-action:manipulation;min-height:46px}
+.primary{background:var(--site-secondary);color:#fff;flex:1}
+.secondary{background:#EEF2F5;color:#334553}
+.drop{border:2px dashed #C6D4DB;border-radius:12px;padding:24px;text-align:center;background:#FAFCFD}
+.drop strong{display:block;margin-bottom:5px}
+.drop small{color:#687783}
+.file-name{margin-top:9px;font-size:12px;color:#315766}
+.status{margin-top:14px;padding:10px 12px;border-radius:9px;background:#F0F6F7;color:#315766;font-size:12px;display:none}
+.right-head{display:flex;align-items:flex-start;justify-content:space-between;gap:15px}
+.right-head p{max-width:610px}
+.report{display:none}
+.report-top{background:#F4F8FA;border:1px solid #DDE7EC;border-radius:12px;padding:15px;margin-bottom:14px}
+.report-top strong{font-size:13px}
+.kpis{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;margin-top:10px}
+.kpi{background:#fff;border:1px solid #E1E8EC;border-radius:9px;padding:10px}
+.kpi b{display:block;font-size:16px}.kpi span{font-size:10px;color:#6C7A84}
+.topic-report{border-top:1px solid #E4EAEE;padding:17px 0}
+.topic-report:first-child{border-top:0}
+.topic-report h3{font-size:15px;margin:0 0 7px}
+.topic-report p,.topic-report li{font-size:13px;line-height:1.55}
+.topic-report ul{padding-left:19px;margin:7px 0}
+.conf{display:inline-block;font-size:10px;padding:3px 6px;border-radius:5px;background:#E8F3EA;color:#35683C;margin-left:5px}
+.notice{font-size:11px;color:#74828B;margin-top:15px}
+footer{max-width:1180px;margin:auto;padding:0 30px 30px;color:#73818A;font-size:11px}
+@media(max-width:850px){.grid{grid-template-columns:1fr}.kpis{grid-template-columns:1fr 1fr}.header-inner{align-items:flex-start}.badge{display:none}}
+@media(max-width:600px){header{padding:16px}main{padding:14px}.card{padding:17px;border-radius:14px}textarea{min-height:170px}#transcript{min-height:260px}#output{min-height:430px!important}.actions{flex-direction:column}.actions button{width:100%}.logo{width:36px;height:36px}h1{font-size:23px}}
+</style>
+</head>
+<body>
+<div id="app">
+<div style="background:#EAF3F5;color:#234F5E;padding:10px 18px;text-align:center;font-size:12px;font-weight:700">Simple meeting-to-brief workflow • Open in Safari for the best app-like experience</div>
+<header>
+  <div class="header-inner">
+    <div class="brand">
+      <div class="logo">CB</div>
+      <div><h1>Meeting Extractor</h1><div class="subtitle">Healthcare planning meeting brief</div></div>
+    </div>
+    <div class="badge">Private-use template</div>
+  </div>
+</header>
+<main>
+<div class="grid">
+<section class="card">
+  <h2>1. Set your topics</h2>
+  <p>Keep the defaults or change them for the meeting. These topics tell ChatGPT exactly what to extract.</p>
+  <label>Topic areas</label>
+  <textarea id="topics">Equipment
+Room / location
+Staffing per room
+Operational requirements
+Decisions made
+Open questions / unresolved items
+Action items & owners
+Timeline / milestones
+Space, workflow & patient flow
+Technology / IT needs
+Budget / cost considerations
+Risks & dependencies</textarea>
+  <div class="topic-list" id="chips"></div>
+  <label>Optional meeting context</label>
+  <input id="context" placeholder="e.g., New outpatient clinic planning meeting">
+  <label>2. Paste the Read AI transcript / notes</label>
+  <div class="drop" id="drop">
+    <textarea id="transcript" placeholder="Paste the complete Read AI transcript here..."></textarea>
+  </div>
+  <div class="actions">
+    <button class="primary" id="run">Create ChatGPT prompt</button>
+    <button class="secondary" id="clear">Clear</button>
+  </div>
+  <div class="status" id="status"></div>
+  <div class="notice">This page does not process the transcript itself. It creates a structured prompt you can paste into ChatGPT. For team use, host this page on your organization's approved internal web server. Do not paste PHI unless your organization's approved workflow permits it. For the best iPhone experience, open the hosted Meeting Extractor page in Safari and use Share → Add to Home Screen.</div>
+</section>
+
+<section class="card">
+  <div class="right-head">
+    <div><h2>3. Ready-to-use ChatGPT prompt</h2><p>Meeting Extractor builds a structured prompt with evidence sourcing and a decision-focused report format.</p></div>
+  </div>
+  <div id="empty">
+    <div class="drop" style="padding:55px 25px">
+      <strong>Your prompt will appear here</strong>
+      <small>Paste the transcript, set your topics, then create the prompt.</small>
+    </div>
+  </div>
+  <div class="report" id="report">
+  <div class="report-top"><strong id="reportTitle">Meeting Planning Prompt</strong></div>
+    <textarea id="output" style="min-height:360px"></textarea>
+    <div class="actions"><button class="primary" id="copy">Copy prompt</button><button class="secondary" id="chatgpt">Open ChatGPT</button></div>
+    <div id="topicReports"></div>
+  <div class="notice">The prompt tells ChatGPT to separate departments, group rooms by type and count, distinguish decisions from discussion, identify missing information, and preserve evidence references when available.</div>
+  </div>
+</section>
+</div>
+</main>
+<footer>Meeting Extractor • Intended for healthcare planning meetings • Not a clinical decision-support tool. Host this page at an approved web address for reliable Safari/Home Screen use.</footer>
+</div>
+<script>
+const topicsEl=document.getElementById('topics'), chips=document.getElementById('chips');
+const transcript=document.getElementById('transcript'), output=document.getElementById('output');
+const status=document.getElementById('status'), report=document.getElementById('report'), empty=document.getElementById('empty');
+function renderChips(){
+  chips.innerHTML='';
+  topicsEl.value.split(/\n|,/).map(x=>x.trim()).filter(Boolean).forEach(x=>{
+    const s=document.createElement('span');s.className='topic';s.textContent=x;chips.appendChild(s);
+  });
+}
+topicsEl.addEventListener('input',renderChips);renderChips();
+document.getElementById('clear').onclick=()=>{
+  transcript.value='';output.value='';status.style.display='none';report.style.display='none';empty.style.display='block';
+};
+document.getElementById('run').onclick=()=>{
+  const topics=topicsEl.value.split(/\n|,/).map(x=>x.trim()).filter(Boolean);
+  if(!topics.length||!transcript.value.trim()){status.style.display='block';status.textContent='Add topic areas and paste the transcript first.';return}
+  const context=document.getElementById('context').value.trim();
+  const prompt = [
+    'You are a healthcare planning meeting analyst. Review the Read AI transcript below and create a concise, highly readable planning brief for healthcare project planning. Prioritize accuracy, traceability, decisions, ownership, and follow-up.',
+    '', 'MEETING CONTEXT: ' + (context || 'Healthcare planning meeting'),
+    '', 'TOPIC AREAS TO EXTRACT:', topics.map((x,i)=>(i+1)+'. '+x).join('\n'),
+    '', 'DEPARTMENT → ROOM TYPE RULES:',
+    '- Identify every department represented in the transcript and keep departments separate.',
+    '- Within each department, organize information by room type.',
+    '- Group same-type rooms only when their requirements are materially the same, and explicitly state the number of rooms.',
+    '- Never merge the same room type across different departments.',
+    '- If same-type rooms have materially different requirements, separate them.',
+    '- Preserve room names/numbers when stated. Put facility-wide requirements in a separate section.',
+    '- Never invent departments, room types, room counts, or assignments.',
+    '', 'CORE RULES:',
+    '- Use only information supported by the transcript. Never infer or fill gaps with outside knowledge.',
+    '- Distinguish CONFIRMED DECISION, PROPOSED/SUGGESTED, DISCUSSED, and UNRESOLVED.',
+    '- Flag conflicting statements rather than choosing a side.',
+    '- If information is absent, write “Not specified.”',
+    '- Preserve quantities, dimensions, equipment, staffing, dates, responsibilities, dependencies, constraints, costs, and operational requirements.',
+    '- Separate action items from discussion.',
+    '', 'EVIDENCE SOURCING:',
+    '- Cite important decisions, requirements, action items, unresolved issues, and factual details when evidence is available.',
+    '- Use [Evidence: Speaker — timestamp], [Evidence: Speaker — transcript section], [Evidence: timestamp], or [Evidence: Speaker].',
+    '- Never fabricate timestamps, speakers, or section names.',
+    '', 'OUTPUT FORMAT:',
+    '1. EXECUTIVE SUMMARY',
+    '2. KEY DECISIONS',
+    '3. FACILITY-WIDE / CROSS-DEPARTMENT REQUIREMENTS',
+    '4. DEPARTMENT-BY-DEPARTMENT REQUIREMENTS — for each department, organize by room type and include room count, requirements, equipment, staffing, workflow/patient flow, technology, operational needs, decisions, open questions, and evidence.',
+    '5. ACTION ITEMS — Action | Owner | Deadline | Department/Room | Dependency | Evidence',
+    '6. OPEN QUESTIONS / INFORMATION GAPS',
+    '7. RISKS / DEPENDENCIES',
+    '8. TIMELINE / MILESTONES',
+    '', 'QUALITY CHECK:',
+    '- Do not invent facts. Do not merge departments. Do not merge same room types across departments.',
+    '- Group rooms only when requirements are materially the same and state the room count.',
+    '- Verify owners, deadlines, decisions, and evidence references.',
+    '- Keep the final report concise enough for leadership to scan while retaining actionable planning detail.',
+    '', 'READ AI TRANSCRIPT:', transcript.value
+  ].join('\n');
+  output.value=prompt;
+  output.focus();
+  status.style.display='block';status.textContent='Prompt created. Copy it into ChatGPT.';
+  empty.style.display='none';report.style.display='block';
+  document.getElementById('reportTitle').textContent=(document.getElementById('context').value||'Healthcare Meeting')+' — Planning Brief';
+};
+document.getElementById('copy').onclick=async()=>{try{if(navigator.clipboard&&window.isSecureContext){await navigator.clipboard.writeText(output.value)}else{const temp=document.createElement('textarea');temp.value=output.value;temp.style.position='fixed';temp.style.opacity='0';document.body.appendChild(temp);temp.focus();temp.select();document.execCommand('copy');document.body.removeChild(temp)}status.style.display='block';status.textContent='Copied. Paste it into ChatGPT.'}catch(e){output.focus();output.select();status.style.display='block';status.textContent='Prompt selected. Tap and hold to copy.'}};
+document.getElementById('chatgpt').onclick=()=>window.open('https://chatgpt.com/','_blank');
+function esc(s){return s.replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+</script>
+</body>
+</html>
