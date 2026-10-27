@@ -4,14 +4,14 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#17324D">
-<meta name="meeting-extractor-version" content="65">
+<meta name="meeting-extractor-version" content="66">
 <title>Meeting Extractor — Meeting Brief</title>
 <style>
 :root{--p:#17324D;--s:#2C6E7F;--bg:#F4F7F9}*{box-sizing:border-box}body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:#17212B;background:var(--bg)}header{background:var(--p);color:#fff;padding:18px 24px}.header-inner{max-width:1180px;margin:auto;display:flex;align-items:center;justify-content:space-between}.brand{display:flex;align-items:center;gap:12px}.logo{width:40px;height:40px;border-radius:12px;background:#fff;color:var(--p);display:grid;place-items:center;font-weight:800}h1{font-size:25px;margin:0}.subtitle{opacity:.78;font-size:13px;margin-top:3px}.badge{font-size:12px;border:1px solid #ffffff40;padding:7px 11px;border-radius:999px}main{max-width:980px;margin:auto;padding:24px}.card{background:#fff;border:1px solid #DCE4EA;border-radius:16px;padding:22px;box-shadow:0 5px 18px #162b3c0d;margin-bottom:16px}.card h2{font-size:17px;margin:0 0 7px}.card p{font-size:13px;line-height:1.5;color:#5B6975;margin:0 0 18px}label{font-size:12px;font-weight:700;display:block;margin:15px 0 7px}input,textarea,select{width:100%;border:1px solid #CDD8DF;border-radius:10px;padding:11px;font:inherit;background:#FBFCFD}textarea{min-height:220px;resize:vertical}select{min-height:320px}.notice{font-size:11px;color:#687783;margin-top:12px;line-height:1.5}.selected-list{margin-top:10px}.selected-item{padding:9px 11px;border-bottom:1px solid #E6ECEF;font-size:12px}.selected-item b{color:var(--p)}.actions{display:flex;gap:8px;margin-top:17px}button{border:0;border-radius:10px;padding:13px 14px;font-weight:700;cursor:pointer;min-height:46px}.primary{background:var(--s);color:#fff;flex:1}.secondary{background:#EEF2F5;color:#334553}.status{margin-top:14px;padding:10px 12px;border-radius:9px;background:#F0F6F7;color:#315766;font-size:12px;display:none}.output{min-height:420px}.footer{max-width:1180px;margin:auto;padding:0 30px 30px;color:#73818A;font-size:11px}@media(max-width:750px){.badge{display:none}main{padding:14px}.card{padding:17px}}@media(max-width:500px){.actions{flex-direction:column}.actions button{width:100%}}
 </style>
 </head>
 <body>
-<div id="app"><div style="background:#EAF3F5;color:#234F5E;padding:10px 18px;text-align:center;font-size:12px;font-weight:700">Meeting Extractor v65 • Dynamic work-group organization • Permanent five-part architecture</div>
+<div id="app"><div style="background:#EAF3F5;color:#234F5E;padding:10px 18px;text-align:center;font-size:12px;font-weight:700">Meeting Extractor v66 • Dynamic work-group organization • Permanent five-part architecture</div>
 <header><div class="header-inner"><div class="brand"><div class="logo">ME</div><div><h1>Meeting Extractor</h1><div class="subtitle">Healthcare planning meeting brief</div></div></div><div class="badge">Private-use template</div></div></header>
 <main><section class="card"><label for="context">1. Spreadsheet / Report Title</label><input id="context" placeholder="e.g., Patient Care Delivery Operational Guidance"><label for="groupSelect">2. Select applicable work groups</label><select id="groupSelect" multiple><optgroup label="Flow &amp; Function"><option>Entrances &amp; Exits</option><option>Docks &amp; Deliveries</option><option>Corridors / Internal Flow</option><option>Elevators</option><option>Stairwells</option><option>Other Campus Considerations</option></optgroup><optgroup label="Security"><option>Program / Staffing</option><option>Services</option><option>Communications / Alarm Systems</option><option>Access Control / Keys</option><option>Cameras</option><option>Secured Locations</option></optgroup><optgroup label="Operational Guidance"><option>Primary Care</option><option>Medical Speciality Clinic</option><option>Audiology</option><option>Whole Health</option><option>Physical Therapy</option><option>Prosthetics</option><option>Substance Abuse/Mental Health</option><option>Surgical Clinic</option><option>Eye Clinic</option><option>Dental Clinic</option><option>Diagnostic X-Ray/Flouro</option><option>CT/MRI</option><option>Mammo/Ultrasound</option><option>Nuclear Med</option><option>Angiography</option></optgroup></select><div class="notice">General is permanent and intentionally removed from the selectable list.</div><label for="customGroups">Additional / custom work groups</label><input id="customGroups" placeholder="e.g., Cardiology, Sterile Processing"><div id="selectedPreview" class="selected-list"></div><label for="transcript">3. Paste the complete Read AI transcript / notes</label><textarea id="transcript" placeholder="Paste the complete Read AI transcript here..."></textarea><div class="actions"><button class="primary" id="run">Create ChatGPT prompt</button><button class="secondary" id="clear">Clear</button></div><div class="status" id="status"></div></section>
 <section class="card"><h2>4. Ready-to-use ChatGPT prompt</h2><p>The generated prompt follows the permanent Master Meeting Extractor rules, including dynamic topics, work-group-specific numbering, evidence sourcing, and no forced categories.</p><textarea id="output" class="output" placeholder="Your structured prompt will appear here..."></textarea><div class="actions"><button class="primary" id="copy">Copy prompt</button><button class="secondary" id="chatgpt">Open ChatGPT</button></div></section></main><div class="footer">Meeting Extractor • Intended for healthcare planning meetings • Not a clinical decision-support tool. For team use, host this page at an approved web address and follow your organization's rules for PHI.</div></div>
@@ -41,9 +41,11 @@ General is a permanent structural section, not a selectable work group. Use Gene
 SECTION 4 — SELECTED WORK GROUPS — PERMANENT ITEM FORMAT:
 - Review the ENTIRE transcript for information relevant to each selected work group.
 - List every selected work group sequentially, one after another.
-- Each work group must appear as its own distinct header.
-- Under that header, list supported meeting-derived items one after another.
+- Each work group MUST appear as its own distinct header using the exact selected work-group name.
+- Immediately under each work-group header, list the supported meeting-derived notes/items for that work group.
+- The work-group header and its notes must remain together; do not combine notes from different work groups.
 - Number items independently within each work group; numbering restarts at 1 for every work group.
+- Every numbered item MUST use the work-group-specific prefix followed by the sequence number and a colon.
 - Permanent prefixes:
   Primary Care = PC1, PC2, PC3...
   Physical Therapy = PT1, PT2, PT3...
@@ -52,16 +54,20 @@ SECTION 4 — SELECTED WORK GROUPS — PERMANENT ITEM FORMAT:
   Eye Clinic = EC1, EC2, EC3...
   Dental Clinic = DC1, DC2, DC3...
   CT/MRI = CT/MRI1, CT/MRI2, CT/MRI3...
-- For other work groups, use a concise work-group-specific prefix based on the work-group name and restart numbering within that group.
-- Example:
+- For other work groups, create a concise, stable work-group-specific prefix based on the work-group name and use it consistently for every note in that group.
+- Example of the REQUIRED structure:
   Primary Care
-  PC1: [meeting-derived item]
-  PC2: [meeting-derived item]
-  PC3: [meeting-derived item]
+  PC1: [meeting-derived note]
+  PC2: [meeting-derived note]
+  PC3: [meeting-derived note]
+
   Physical Therapy
-  PT1: [meeting-derived item]
-  PT2: [meeting-derived item]
-- Do not restart numbering when the subject/topic changes. Numbering is controlled only by the work group.
+  PT1: [meeting-derived note]
+  PT2: [meeting-derived note]
+- Do not use one global sequence across all work groups.
+- Do not continue Primary Care numbering into Physical Therapy or any other group.
+- Do not restart numbering merely because the subject/topic changes within the same work group.
+- Topic headings may be used within a work group when they improve readability, but topic headings NEVER replace the required work-group header or the required prefixed note IDs.
 - Do not combine multiple work groups into one numbered sequence.
 - If a selected work group has no transcript-supported information, list its header followed by: Not specified.
 
@@ -102,7 +108,7 @@ ACCURACY / NO-INFERENCE RULES:
 - Do not invent departments, rooms, equipment, staffing, owners, decisions, deadlines, or requirements.
 
 WORKBOOK DELIVERABLE:
-Create ONE Excel workbook when file creation is available. Keep the five-part architecture intact. Section 4 must list selected work groups sequentially, each as a distinct header with independently numbered work-group-specific items. Do not create a rigid identical matrix for every work group. Preserve evidence and status in the relevant entries. Keep Notes & Concerns as section 5. Use one worksheet/page when that is the configured deliverable; do not create separate worksheets merely because work groups differ unless explicitly requested.
+Create ONE Excel workbook when file creation is available. Keep the five-part architecture intact. Section 4 must list selected work groups sequentially, each as a distinct header with independently numbered work-group-specific items. Each header must be followed by that work group's itemized notes. Do not create a rigid identical matrix for every work group. Preserve evidence and status in the relevant entries. Keep Notes & Concerns as section 5. Use one worksheet/page when that is the configured deliverable; do not create separate worksheets merely because work groups differ unless explicitly requested.
 
 READ AI TRANSCRIPT:
 ${transcript.value}`;status.style.display='block';status.textContent='Prompt created. Copy it into ChatGPT.';output.focus()}
