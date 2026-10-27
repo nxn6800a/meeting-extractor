@@ -8,495 +8,120 @@
 <meta name="apple-mobile-web-app-title" content="Meeting Extractor">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="theme-color" content="#17324D">
-<meta name="meeting-extractor-version" content="62">
-<link rel="manifest" href="data:application/manifest+json,{&quot;name&quot;:&quot;Meeting Extractor&quot;,&quot;short_name&quot;:&quot;Meeting Extractor&quot;,&quot;display&quot;:&quot;standalone&quot;,&quot;background_color&quot;:&quot;#F4F7F9&quot;,&quot;theme_color&quot;:&quot;#17324D&quot;,&quot;start_url&quot;:&quot;.&quot;}">
+<meta name="meeting-extractor-version" content="63">
 <title>Meeting Extractor — Meeting Brief</title>
 <style>
-:root{
-  --site-primary:#17324D;
-  --site-secondary:#2C6E7F;
-  --site-background:#F4F7F9;
-  --site-on-primary:#FFFFFF;
-  --site-on-secondary:#FFFFFF;
-  --site-on-background:#17212B;
-  --site-font-body:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
-  --site-font-heading:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
-  --site-heading-scale:1;
-  --site-spacing-scale:1;
-  --site-radius-scale:1;
-  --site-decoration-opacity:1;
-}
-*{box-sizing:border-box}
-html{-webkit-text-size-adjust:100%;touch-action:manipulation}
-body{margin:0;font-family:var(--site-font-body);color:var(--site-on-background);background:var(--site-background)}
-#app{min-height:100vh;background:var(--site-background)}
-header{background:var(--site-primary);color:var(--site-on-primary);padding:calc(18px * var(--site-spacing-scale)) calc(24px * var(--site-spacing-scale))}
-.header-inner{max-width:1180px;margin:auto;display:flex;align-items:center;justify-content:space-between;gap:20px}
-.brand{display:flex;align-items:center;gap:12px}
-.logo{width:40px;height:40px;border-radius:12px;background:#fff;color:var(--site-primary);display:grid;place-items:center;font-weight:800}
-h1{font-size:calc(25px * var(--site-heading-scale));margin:0;font-family:var(--site-font-heading)}
-.subtitle{opacity:.78;font-size:13px;margin-top:3px}
-.badge{font-size:12px;border:1px solid rgba(255,255,255,.25);padding:7px 11px;border-radius:999px}
-main{max-width:900px;margin:auto;padding:calc(24px * var(--site-spacing-scale))}
-.grid{display:grid;grid-template-columns:1fr;gap:16px}
-.card{background:#fff;border:1px solid #DCE4EA;border-radius:calc(16px * var(--site-radius-scale));padding:22px;box-shadow:0 5px 18px rgba(22,43,60,.05)}
-.card h2{font-size:17px;margin:0 0 7px}
-.card p{font-size:13px;line-height:1.5;color:#5B6975;margin:0 0 18px}
-label{font-size:12px;font-weight:700;display:block;margin:15px 0 7px}
-textarea,input,select{width:100%;border:1px solid #CDD8DF;border-radius:10px;padding:11px;font:inherit;background:#FBFCFD}
-textarea{min-height:150px;resize:vertical}
-input:focus,textarea:focus{outline:3px solid rgba(44,110,127,.14);border-color:var(--site-secondary)}
-.topic-list{display:flex;flex-wrap:wrap;gap:7px;margin:9px 0}
-.topic{background:#EAF3F5;color:#235667;padding:6px 9px;border-radius:999px;font-size:12px}
-.actions{display:flex;gap:8px;margin-top:17px}
-button{border:0;border-radius:10px;padding:13px 14px;font-weight:700;cursor:pointer;touch-action:manipulation;min-height:46px}
-.primary{background:var(--site-secondary);color:#fff;flex:1}
-.secondary{background:#EEF2F5;color:#334553}
-.drop{border:2px dashed #C6D4DB;border-radius:12px;padding:24px;text-align:center;background:#FAFCFD}
-.drop strong{display:block;margin-bottom:5px}
-.drop small{color:#687783}
-.file-name{margin-top:9px;font-size:12px;color:#315766}
-.status{margin-top:14px;padding:10px 12px;border-radius:9px;background:#F0F6F7;color:#315766;font-size:12px;display:none}
-.right-head{display:flex;align-items:flex-start;justify-content:space-between;gap:15px}
-.right-head p{max-width:610px}
-.report{display:none}
-.report-top{background:#F4F8FA;border:1px solid #DDE7EC;border-radius:12px;padding:15px;margin-bottom:14px}
-.report-top strong{font-size:13px}
-.kpis{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;margin-top:10px}
-.kpi{background:#fff;border:1px solid #E1E8EC;border-radius:9px;padding:10px}
-.kpi b{display:block;font-size:16px}.kpi span{font-size:10px;color:#6C7A84}
-.topic-report{border-top:1px solid #E4EAEE;padding:17px 0}
-.topic-report:first-child{border-top:0}
-.topic-report h3{font-size:15px;margin:0 0 7px}
-.topic-report p,.topic-report li{font-size:13px;line-height:1.55}
-.topic-report ul{padding-left:19px;margin:7px 0}
-.conf{display:inline-block;font-size:10px;padding:3px 6px;border-radius:5px;background:#E8F3EA;color:#35683C;margin-left:5px}
-.notice{font-size:11px;color:#74828B;margin-top:15px}
-footer{max-width:1180px;margin:auto;padding:0 30px 30px;color:#73818A;font-size:11px}
-@media(max-width:850px){.grid{grid-template-columns:1fr}.kpis{grid-template-columns:1fr 1fr}.header-inner{align-items:flex-start}.badge{display:none}}
-@media(max-width:600px){header{padding:16px}main{padding:14px}.card{padding:17px;border-radius:14px}textarea{min-height:170px}#transcript{min-height:260px}#output{min-height:430px!important}.actions{flex-direction:column}.actions button{width:100%}.logo{width:36px;height:36px}h1{font-size:23px}}
+:root{--site-primary:#17324D;--site-secondary:#2C6E7F;--site-background:#F4F7F9;--site-on-primary:#fff;--site-on-background:#17212B;--site-font-body:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;--site-font-heading:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;--site-heading-scale:1;--site-spacing-scale:1;--site-radius-scale:1}
+*{box-sizing:border-box}html{-webkit-text-size-adjust:100%;touch-action:manipulation}body{margin:0;font-family:var(--site-font-body);color:var(--site-on-background);background:var(--site-background)}#app{min-height:100vh;background:var(--site-background)}
+header{background:var(--site-primary);color:#fff;padding:18px 24px}.header-inner{max-width:1180px;margin:auto;display:flex;align-items:center;justify-content:space-between;gap:20px}.brand{display:flex;align-items:center;gap:12px}.logo{width:40px;height:40px;border-radius:12px;background:#fff;color:var(--site-primary);display:grid;place-items:center;font-weight:800}h1{font-size:25px;margin:0}.subtitle{opacity:.78;font-size:13px;margin-top:3px}.badge{font-size:12px;border:1px solid rgba(255,255,255,.25);padding:7px 11px;border-radius:999px}
+main{max-width:980px;margin:auto;padding:24px}.card{background:#fff;border:1px solid #DCE4EA;border-radius:16px;padding:22px;box-shadow:0 5px 18px rgba(22,43,60,.05);margin-bottom:16px}.card h2{font-size:17px;margin:0 0 7px}.card p{font-size:13px;line-height:1.5;color:#5B6975;margin:0 0 18px}label{font-size:12px;font-weight:700;display:block;margin:15px 0 7px}input,textarea,select{width:100%;border:1px solid #CDD8DF;border-radius:10px;padding:11px;font:inherit;background:#FBFCFD}textarea{min-height:220px;resize:vertical}select{min-height:320px}input:focus,textarea:focus,select:focus{outline:3px solid rgba(44,110,127,.14);border-color:var(--site-secondary)}
+.notice{font-size:11px;color:#687783;margin-top:12px;line-height:1.5}.structure{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin:12px 0}.structure div{border:1px solid #DCE4EA;background:#F7FAFB;border-radius:10px;padding:10px;font-size:11px;font-weight:700}.structure b{display:block;font-size:14px;color:var(--site-secondary);margin-bottom:4px}.selected-list{margin-top:10px}.selected-item{padding:9px 11px;border-bottom:1px solid #E6ECEF;font-size:12px}.selected-item:last-child{border-bottom:0}.selected-item b{color:#17324D}.actions{display:flex;gap:8px;margin-top:17px}button{border:0;border-radius:10px;padding:13px 14px;font-weight:700;cursor:pointer;touch-action:manipulation;min-height:46px}.primary{background:var(--site-secondary);color:#fff;flex:1}.secondary{background:#EEF2F5;color:#334553}.status{margin-top:14px;padding:10px 12px;border-radius:9px;background:#F0F6F7;color:#315766;font-size:12px;display:none}.output{min-height:420px}.footer{max-width:1180px;margin:auto;padding:0 30px 30px;color:#73818A;font-size:11px}@media(max-width:750px){.structure{grid-template-columns:1fr 1fr}.badge{display:none}main{padding:14px}.card{padding:17px}}@media(max-width:500px){.structure{grid-template-columns:1fr}.actions{flex-direction:column}.actions button{width:100%}}
 </style>
 </head>
 <body>
 <div id="app">
-<div style="background:#EAF3F5;color:#234F5E;padding:10px 18px;text-align:center;font-size:12px;font-weight:700">Simple meeting-to-brief workflow • Open in Safari for the best app-like experience</div>
-<header>
-  <div class="header-inner">
-    <div class="brand">
-      <div class="logo">CB</div>
-      <div><h1>Meeting Extractor</h1><div class="subtitle">Healthcare planning meeting brief</div></div>
-    </div>
-    <div class="badge">Private-use template</div>
-  </div>
-</header>
+<div style="background:#EAF3F5;color:#234F5E;padding:10px 18px;text-align:center;font-size:12px;font-weight:700">Updated Meeting Extractor • Dynamic work-group organization • General is permanent and not selectable</div>
+<header><div class="header-inner"><div class="brand"><div class="logo">ME</div><div><h1>Meeting Extractor</h1><div class="subtitle">Healthcare planning meeting brief</div></div></div><div class="badge">Private-use template</div></div></header>
 <main>
-<div class="grid">
 <section class="card">
-  <label for="context">1. Spreadsheet Title</label>
-  <input id="context" placeholder="e.g., Entrances &amp; Exits Planning Report">
-  <h2>2. Set your work groups</h2>
-  <p>Keep the defaults or change them for the meeting. These work groups tell ChatGPT exactly what to extract and organize.</p>
-  <label for="groupSelect">Add applicable work groups</label>
-  <select id="groupSelect" multiple size="18" aria-label="Select applicable work groups">
-   <optgroup label="Flow &amp; Function">
-    <option>Entrances &amp; Exits</option>
-    <option>Docks &amp; Deliveries</option>
-    <option>Corridors / Internal Flow</option>
-    <option>Elevators</option>
-    <option>Stairwells</option>
-    <option>Other Campus Considerations</option>
-   </optgroup>
-   <optgroup label="Security">
-    <option>Program / Staffing</option>
-    <option>Services</option>
-    <option>Communications / Alarm Systems</option>
-    <option>Access Control / Keys</option>
-    <option>Cameras</option>
-    <option>Secured Locations</option>
-   </optgroup>
-   <optgroup label="Operational Guidance">
-    <option>General</option>
-    <option>Primary Care</option>
-    <option>Medical Speciality Clinic</option>
-    <option>Audiology</option>
-    <option>Whole Health</option>
-    <option>Physical Therapy</option>
-    <option>Prosthetics</option>
-    <option>Substance Abuse/Mental Health</option>
-    <option>Surgical Clinic</option>
-    <option>Eye Clinic</option>
-    <option>Dental Clinic</option>
-   <option>Diagnostic X-Ray/Flouro</option>
-   <option>CT/MRI</option>
-   <option>Mammo/Ultrasound</option>
-   <option>Nuclear Med</option>
-   <option>Angiography</option>
-   </optgroup>
-  </select>
-  <small style="display:block;color:#687783;font-size:11px;margin-top:7px">Select one or more. Hold to select multiple on desktop; on iPhone, tap and drag through the list. We can keep expanding this library as your needs develop.</small>
-  <label for="customGroups">Additional / custom work groups</label>
-  <input id="customGroups" placeholder="e.g., Cardiology, Sterile Processing, Security">
-  <div class="topic-list" id="chips"></div>
-  <textarea id="topics" style="display:none"></textarea>
-  <label>3. Paste the Read AI transcript / notes</label>
-  <div class="drop" id="drop">
-    <textarea id="transcript" placeholder="Paste the complete Read AI transcript here..."></textarea>
-  </div>
-  <div class="actions">
-    <button class="primary" id="run">Create ChatGPT prompt</button>
-    <button class="secondary" id="clear">Clear</button>
-  </div>
-  <div class="status" id="status"></div>
-  <div class="notice" id="profileStatus">Work-group profiles loaded: 28 standard profiles across Flow &amp; Function, Security, and Operational Guidance. Custom groups can be added without changing the core workflow.</div>
-  <div class="notice">This page does not process the transcript itself. It creates a structured prompt you can paste into ChatGPT. For team use, host this page on your organization's approved internal web server. Do not paste PHI unless your organization's approved workflow permits it. For the best iPhone experience, open the hosted Meeting Extractor page in Safari and use Share → Add to Home Screen.</div>
+<h2>Permanent report structure</h2>
+<p>The extractor always uses the same five-part architecture. The content inside each work group is generated from what was actually discussed in the meeting.</p>
+<div class="structure"><div><b>1</b>WORK GROUPS</div><div><b>2</b>WORK GROUP MEMBERS</div><div><b>3</b>GENERAL</div><div><b>4</b>SELECTED WORK GROUPS</div><div><b>5</b>NOTES &amp; CONCERNS</div></div>
+<div class="notice"><strong>General is permanent.</strong> It is not a selectable work group and will never appear in the work-group dropdown. It is reserved for facility-wide, project-wide, or cross-department information.</div>
 </section>
-
 <section class="card">
-  <div class="right-head">
-    <div><h2>3. Ready-to-use ChatGPT prompt</h2><p>Meeting Extractor builds a structured prompt with evidence sourcing and a decision-focused report format.</p></div>
-  </div>
-  <div id="empty">
-    <div class="drop" style="padding:55px 25px">
-      <strong>Your prompt will appear here</strong>
-      <small>Paste the transcript, set your topics, then create the prompt.</small>
-    </div>
-  </div>
-  <div class="report" id="report">
-  <div class="report-top"><strong id="reportTitle">Meeting Planning Prompt</strong></div>
-    <textarea id="output" style="min-height:360px"></textarea>
-    <div class="actions"><button class="primary" id="copy">Copy prompt</button><button class="secondary" id="chatgpt">Open ChatGPT</button></div>
-    <div id="topicReports"></div>
-  <div class="notice">The prompt tells ChatGPT to separate departments, group rooms by type and count, distinguish decisions from discussion, identify missing information, and preserve evidence references when available.</div>
-  </div>
+<label for="context">1. Spreadsheet / Report Title</label>
+<input id="context" placeholder="e.g., Patient Care Delivery Operational Guidance">
+<label for="groupSelect">2. Select applicable work groups</label>
+<select id="groupSelect" multiple aria-label="Select applicable work groups">
+<optgroup label="Flow &amp; Function"><option>Entrances &amp; Exits</option><option>Docks &amp; Deliveries</option><option>Corridors / Internal Flow</option><option>Elevators</option><option>Stairwells</option><option>Other Campus Considerations</option></optgroup>
+<optgroup label="Security"><option>Program / Staffing</option><option>Services</option><option>Communications / Alarm Systems</option><option>Access Control / Keys</option><option>Cameras</option><option>Secured Locations</option></optgroup>
+<optgroup label="Operational Guidance"><option>Primary Care</option><option>Medical Speciality Clinic</option><option>Audiology</option><option>Whole Health</option><option>Physical Therapy</option><option>Prosthetics</option><option>Substance Abuse/Mental Health</option><option>Surgical Clinic</option><option>Eye Clinic</option><option>Dental Clinic</option><option>Diagnostic X-Ray/Flouro</option><option>CT/MRI</option><option>Mammo/Ultrasound</option><option>Nuclear Med</option><option>Angiography</option></optgroup>
+</select>
+<div class="notice">General has intentionally been removed from this selectable list. Select only the work groups relevant to the meeting. Hold to select multiple on desktop; on iPhone, tap/drag through the list.</div>
+<label for="customGroups">Additional / custom work groups</label>
+<input id="customGroups" placeholder="e.g., Cardiology, Sterile Processing">
+<div id="selectedPreview" class="selected-list"></div>
+<label for="transcript">3. Paste the complete Read AI transcript / notes</label>
+<textarea id="transcript" placeholder="Paste the complete Read AI transcript here..."></textarea>
+<div class="actions"><button class="primary" id="run">Create ChatGPT prompt</button><button class="secondary" id="clear">Clear</button></div><div class="status" id="status"></div>
 </section>
-</div>
-</main>
-<footer>Meeting Extractor • Intended for healthcare planning meetings • Not a clinical decision-support tool. Host this page at an approved web address for reliable Safari/Home Screen use.</footer>
+<section class="card"><h2>4. Ready-to-use ChatGPT prompt</h2><p>The generated prompt follows the updated Master Meeting Extractor rules: fixed five-part architecture, dynamic meeting-derived topics, example-worksheet organization, evidence sourcing, and no forced categories.</p><textarea id="output" class="output" placeholder="Your structured prompt will appear here..."></textarea><div class="actions"><button class="primary" id="copy">Copy prompt</button><button class="secondary" id="chatgpt">Open ChatGPT</button></div></section>
+</main><div class="footer">Meeting Extractor • Intended for healthcare planning meetings • Not a clinical decision-support tool. For team use, host this page at an approved web address and follow your organization's rules for PHI.</div>
 </div>
 <script>
-const topicsEl=document.getElementById('topics'), chips=document.getElementById('chips'), groupSelect=document.getElementById('groupSelect'), customGroups=document.getElementById('customGroups');
-const transcript=document.getElementById('transcript'), output=document.getElementById('output');
-const status=document.getElementById('status'), report=document.getElementById('report'), empty=document.getElementById('empty');
-const WORK_GROUP_LIBRARY={
-  'Entrances & Exits':{category:'Flow & Function',sheet:'Entrances & Exits',profileKey:'entrances_exits'},
-  'Docks & Deliveries':{category:'Flow & Function',sheet:'Docks & Deliveries',profileKey:'docks_deliveries'},
-  'Corridors / Internal Flow':{category:'Flow & Function',sheet:'Corridors - Internal Flow',profileKey:'corridors_internal_flow'},
-  'Elevators':{category:'Flow & Function',sheet:'Elevators',profileKey:'elevators'},
-  'Stairwells':{category:'Flow & Function',sheet:'Stairwells',profileKey:'stairwells'},
-  'Other Campus Considerations':{category:'Flow & Function',sheet:'Other Campus Considerations',profileKey:'other_campus'},
-  'Program / Staffing':{category:'Security',sheet:'Security - Program & Staffing',profileKey:'security_program_staffing'},
-  'Services':{category:'Security',sheet:'Security - Services',profileKey:'security_services'},
-  'Communications / Alarm Systems':{category:'Security',sheet:'Security - Communications & Alarms',profileKey:'security_comms_alarms'},
-  'Access Control / Keys':{category:'Security',sheet:'Security - Access Control & Keys',profileKey:'security_access_keys'},
-  'Cameras':{category:'Security',sheet:'Security - Cameras',profileKey:'security_cameras'},
-  'Secured Locations':{category:'Security',sheet:'Security - Secured Locations',profileKey:'security_secured_locations'},
-  'General':{category:'Operational Guidance',sheet:'General',profileKey:'general'},
-  'Primary Care':{category:'Operational Guidance',sheet:'Primary Care',profileKey:'primary_care'},
-  'Medical Speciality Clinic':{category:'Operational Guidance',sheet:'Medical Speciality Clinic',profileKey:'medical_speciality_clinic'},
-  'Audiology':{category:'Operational Guidance',sheet:'Audiology',profileKey:'audiology'},
-  'Whole Health':{category:'Operational Guidance',sheet:'Whole Health',profileKey:'whole_health'},
-  'Physical Therapy':{category:'Operational Guidance',sheet:'Physical Therapy',profileKey:'physical_therapy'},
-  'Prosthetics':{category:'Operational Guidance',sheet:'Prosthetics',profileKey:'prosthetics'},
-  'Substance Abuse/Mental Health':{category:'Operational Guidance',sheet:'Substance Abuse/Mental Health',profileKey:'substance_abuse_mental_health'},
-  'Surgical Clinic':{category:'Operational Guidance',sheet:'Surgical Clinic',profileKey:'surgical_clinic'},
-  'Eye Clinic':{category:'Operational Guidance',sheet:'Eye Clinic',profileKey:'eye_clinic'},
-  'Dental Clinic':{category:'Operational Guidance',sheet:'Dental Clinic',profileKey:'dental_clinic'},
-  'Diagnostic X-Ray/Flouro':{category:'Operational Guidance',sheet:'Diagnostic X-Ray - Flouro',profileKey:'diagnostic_xray_flouro'},
-  'CT/MRI':{category:'Operational Guidance',sheet:'CT - MRI',profileKey:'ct_mri'},
-  'Mammo/Ultrasound':{category:'Operational Guidance',sheet:'Mammo - Ultrasound',profileKey:'mammo_ultrasound'},
-  'Nuclear Med':{category:'Operational Guidance',sheet:'Nuclear Med',profileKey:'nuclear_med'},
-  'Angiography':{category:'Operational Guidance',sheet:'Angiography',profileKey:'angiography'},
-  'Custom':{category:'Custom',sheet:'Custom Work Group',profileKey:'custom'}
-};
-const WORK_GROUP_PROFILES={
-  entrances_exits:{name:'Entrances & Exits',criteria:[
-    'Extract entrance/exit locations, names, identifiers, quantities, functions, users, hours, access restrictions, responsibilities, and distinct access points such as Main Entrance, Women’s Entrance, DOD Entrance, Staff Entrance(s), Ambulance Entrance, or other named access points.',
-    'Capture door types, sizes, configurations, hardware, automatic/manual operation, security/access control, vestibules, accessibility requirements or concerns only when explicitly discussed, wayfinding, signage, directories, visibility, drop-off, pick-up, queuing, waiting, pedestrian circulation, traffic flow, and separation/coordination of pedestrian, vehicle, service, delivery, staff, and emergency traffic.',
-    'Capture security, screening, controlled access, monitoring, intercom, badge access, cameras, alarms, weather protection, canopies, exterior conditions, signage, lighting, power, communications, IT, and other infrastructure tied to entrances/exits when discussed.',
-    'Capture relationships to reception, waiting, parking, elevators, stairs, clinical areas, loading/service areas, departments, security points, public areas, and other destinations.',
-    'Capture emergency egress, exit paths, evacuation, and life-safety requirements only when explicitly discussed; do not supply code requirements not stated in the transcript.',
-    'Capture decisions, proposed options, unresolved questions, action items, owners, deadlines, dependencies, and evidence. Preserve each entrance/exit separately when requirements differ; group only when materially similar and state quantity.',
-    'Model the extraction after an operational guidance / flow-and-function planning matrix. For each entrance/exit, keep individual planning statements separate and distinguish PLANNING GUIDANCE from CONSIDERATIONS / IMPACTS. Capture ISSUES / OPEN ITEMS separately and preserve issue/action tracking IDs when stated.',
-    'Preserve operational details such as hours, access methods, user groups, escort requirements, delivery routes, drop-off rules, emergency response, staffing responsibilities, access-control methods, and technology interfaces when stated. Preserve quantities, locations, identifiers, dimensions, and distances exactly. Never fabricate owners or evidence.'
-  ],matrix:['ID / sequence','Topic / entrance-exit name','Planning Guidance','Considerations / Impacts','Issue / Open Question number','Owner','Evidence','Use “Not specified” only when structurally needed.']},
-  docks_deliveries:{name:'Docks & Deliveries',criteria:[
-    'Extract dock/loading/receiving/service entrance/delivery locations, identifiers, quantities, functions, delivery types, user groups, hours, scheduling, access restrictions, staging, procedures, and responsibilities.',
-    'Capture vehicle access/circulation/turning/queuing/loading/unloading; dock configuration, positions, doors, canopies, equipment, ramps, lifts, levelers, receiving, inspection, sorting, storage, distribution, staging, and material movement.',
-    'Capture relationships to receiving, storage, kitchens, pharmacy, laboratory, sterile processing, EVS, waste, freight elevators, corridors, departments, and service areas.',
-    'Capture vendor/security/access control, clean/dirty/public/service/pedestrian/vehicle/incoming/outgoing separation, carts/pallets/containers/hand trucks/forklifts/dollies, infrastructure, staffing, decisions, actions, owners, deadlines, dependencies, and evidence when explicitly discussed.',
-    'Do not invent regulatory requirements; preserve distinct docks/routes/functions when requirements differ.'
-  ],matrix:['ID / sequence','Topic / dock, receiving, delivery, service access, or material flow','Planning Guidance','Considerations / Impacts','Issue / Open Question number','Owner','Evidence']},
-  corridors_internal_flow:{name:'Corridors / Internal Flow',criteria:[
-    'Extract corridor locations, names, identifiers, widths, configurations, quantities, functions, patient/staff/visitor/service/clean/dirty/emergency flows, and movement between departments, rooms, waiting areas, entrances, elevators, stairs, docks, and destinations.',
-    'Capture separation/coordination of flows, intersections, bottlenecks, congestion, queuing, passing, turning, conflicts, room entrances, nurse stations, reception, waiting, loading/receiving, clinical/support areas, door swings, clearances, alcoves, equipment parking, carts, stretchers, wheelchairs, beds, wayfinding, signage, visibility, lighting, communications, technology, hours, access restrictions, responsibilities, escort, and controlled circulation when discussed.',
-    'Capture decisions, proposed options, unresolved questions, action items, owners, deadlines, dependencies, and evidence. Preserve distinct paths/areas when requirements differ.'
-  ],matrix:['ID / sequence','Topic / corridor, circulation path, or flow name','Planning Guidance','Considerations / Impacts','Issue / Open Question number','Owner','Evidence']},
-  elevators:{name:'Elevators',criteria:[
-    'Extract elevator locations, banks, quantities, identifiers, floors served, functions, passenger/patient/staff/service/freight/emergency uses, and user groups.',
-    'Capture bed/patient/equipment/supply/delivery/clean/dirty/waste movement, capacity, dimensions, doors, controls, access restrictions, scheduling, relationships to entrances/lobbies/corridors/departments/docks/receiving/clinical/parking, zoning, separation, priority, dedicated/shared use, security, badge access, intercom, cameras, monitoring, destination controls, carts, stretchers, beds, wheelchairs, freight, and emergency/fire-service/downtime considerations only when explicitly discussed.',
-    'Capture decisions, proposed options, unresolved questions, action items, owners, deadlines, dependencies, and evidence. Preserve each bank/function separately and state quantities.'
-  ],matrix:['ID / sequence','Topic / elevator bank, elevator, or function','Planning Guidance','Considerations / Impacts','Issue / Open Question number','Owner','Evidence']},
-  stairwells:{name:'Stairwells',criteria:[
-    'Extract stairwell locations, identifiers, quantities, floors, functions, users, connections between floors/departments/entrances/corridors/parking, and physical characteristics only when stated.',
-    'Capture emergency egress/evacuation/fire response/life-safety only when explicitly discussed; also capture security, controlled access, badge access, monitoring, cameras, alarms, wayfinding, signage, lighting, visibility, responsibilities, access restrictions, hours, and coordination when stated.',
-    'Capture decisions, proposed options, unresolved questions, action items, owners, deadlines, dependencies, and evidence. Preserve each stairwell separately when requirements differ.'
-  ],matrix:['ID / sequence','Topic / stairwell or vertical circulation name','Planning Guidance','Considerations / Impacts','Issue / Open Question number','Owner','Evidence']},
-  other_campus:{name:'Other Campus Considerations',criteria:[
-    'Extract campus-wide relationships, site interfaces, neighboring buildings, shared infrastructure, site circulation, pedestrian/vehicular/parking/service routes, campus access, existing versus new facilities, phasing, temporary conditions, future expansion, swing space, and operational continuity.',
-    'Capture shared services/utilities/support resources, construction impacts, temporary access, relocation, shutdowns, disruptions, campus wayfinding, security, lighting, technology, communications, public-facing interfaces, and environmental/landscape/weather/site/topographic conditions only when explicitly raised.',
-    'Capture relationships to adjacent departments/buildings/roads/parking/public spaces/emergency access/docks, decisions, proposals, open questions, actions, owners, deadlines, dependencies, and evidence.',
-    'Do not use this profile as a catch-all; avoid duplicating information clearly assigned to another selected work group.'
-  ],matrix:['ID / sequence','Topic / campus consideration or site interface','Planning Guidance','Considerations / Impacts','Issue / Open Question number','Owner','Evidence']},
-  security_program_staffing:{name:'Security — Program / Staffing',criteria:[
-    'Extract security or police program structure, personnel roles, staffing levels, coverage models, hours of service, supervisory coverage, dispatch staffing, patrol/stationary assignments, dedicated positions, and responsibilities when explicitly discussed.',
-    'Capture operating hours and how security staffing flexes with facility or department operating hours; preserve minimum staffing counts and coverage assignments exactly when stated.',
-    'Capture uniforms, weapons, weapons-detection decisions, police/security presence requirements, dispatch-center functions, system coordination, relationships to Emergency Management, Safety, IT, Facilities, local fire/PD, and other departments when explicitly discussed.',
-    'Capture training, qualifications, responsibilities, escalation/response roles, and security presence requirements only when stated in the transcript or source material. Do not invent staffing standards or regulatory requirements.',
-    'Capture decisions, proposed options, unresolved questions, action items, owners, deadlines, dependencies, and evidence. Preserve each distinct staffing role or coverage requirement separately when requirements differ.'
-  ],matrix:['ID / sequence','Topic / security program or staffing function','Planning Guidance','Considerations / Impacts','Issue / Open Question number','Owner','Evidence']},
-  security_services:{name:'Security — Services',criteria:[
-    'Extract operational security services and responsibilities including response to announced codes, threat assessment/response, disruptive or behavioral-health patient support, escorts, prisoner/detention interface, patrol support, stationary posts, lost and found responsibilities, patient valuables, evidence/weapons handling, cash handling, armored-vehicle coordination, vehicle assistance, vendor sign-in/control, and other security services when explicitly discussed.',
-    'Capture how services are initiated, who is notified, who responds, where the service occurs, hours or conditions, handoffs, escalation, and coordination with clinical, administrative, Emergency Management, Facilities, HAS, or other departments when stated.',
-    'Capture specific code-response responsibilities and named code types such as Code Blue, Code Pink, Code Grey, Fire/Tornado, Lock Down, or other codes only when explicitly identified. Preserve the source terminology rather than defining codes from outside knowledge.',
-    'Capture decisions, proposed services, unresolved responsibilities, action items, owners, deadlines, dependencies, and evidence. Distinguish services that Security owns from services that were discussed but assigned elsewhere.'
-  ],matrix:['ID / sequence','Topic / security service or responsibility','Planning Guidance','Considerations / Impacts','Issue / Open Question number','Owner','Evidence']},
-  security_comms_alarms:{name:'Security — Communications / Alarm Systems',criteria:[
-    'Extract dispatch, communication, notification, alarm, duress, silent alarm, intrusion, lockdown, emergency notification, radio, overhead code, and related security-system functions when discussed.',
-    'Capture dispatch-center relationships, monitoring/notification recipients, call lists or cascade callbacks, automated notification systems, distribution lists, keyboard or computer duress activation, duress buttons, alarm initiation, location identification, and response routing when explicitly stated.',
-    'Capture lockdown capabilities and the specific function discussed for the lockdown control. Preserve unresolved questions about what a lockdown control will do rather than assuming a standard function.',
-    'Capture radio-system interfaces and separation/coordination between Police Services and internal engineering/operations/emergency-management systems, including links to local fire or police when stated.',
-    'Capture code activation and overhead-announcement processes, code naming/consistency, access changes tied to codes, periodic code changes, and semi-restricted access only when explicitly discussed.',
-    'Capture decisions, proposals, unresolved configuration or licensing needs, owners, deadlines, dependencies, and evidence. Never infer alarm coverage, response times, or regulatory requirements.'
-  ],matrix:['ID / sequence','Topic / communication, alarm, notification, or response system','Planning Guidance','Considerations / Impacts','Issue / Open Question number','Owner','Evidence']},
-  security_access_keys:{name:'Security — Access Control / Keys',criteria:[
-    'Extract access-control programs, badge/PIV systems, credentialing, card access, key programs, lockouts, hard-key backup, key custody, key logs, audits, programming, access permissions, and related policies/procedures when explicitly discussed.',
-    'Capture who programs access, who dictates policy, who requests/issues/controls keys, service-level key custodians, audit frequency, lock/key ownership, locksmith responsibilities, and access permissions by department, role, area, floor, or operating period when stated.',
-    'Capture access-control behavior for staff, vendors, visitors, patients/families, deliveries, restricted units, elevators, stairwells, service areas, clinical areas, and other secured spaces when the source material explicitly describes it.',
-    'Capture badge/PIV exceptions, forgotten-credential procedures, system-down contingencies, hard-key fallback, controlled access during normal versus after-hours operation, and technology/network interfaces when stated.',
-    'Capture unresolved policy/procedure questions, access assignments, lockout procedures, ownership, action items, deadlines, dependencies, and evidence. Do not assume access permissions that are not stated.'
-  ],matrix:['ID / sequence','Topic / access-control or key-management function','Planning Guidance','Considerations / Impacts','Issue / Open Question number','Owner','Evidence']},
-  security_cameras:{name:'Security — Cameras',criteria:[
-    'Extract camera locations, coverage areas, monitoring locations, recording behavior, intrusion detection relationships, network video recorders, storage location, retention periods, and access/visibility restrictions when explicitly discussed.',
-    'Capture whether cameras are monitored locally, remotely, or by a separate center; identify who monitors them and how monitoring relates to dispatch, Police Services, clinical areas, nurses stations, or other operations when stated.',
-    'Preserve distinctions between cameras that record and cameras that are view-only. Capture privacy or non-recording requirements only when explicitly stated, such as cameras in patient rooms being visible at a nurses station but not recorded.',
-    'Capture recommendations versus approved scope. If a camera quantity or location is proposed but not approved, preserve that status and do not convert the recommendation into a confirmed requirement.',
-    'Capture decisions, open questions, infrastructure/IT dependencies, storage/retention details, owners, deadlines, and evidence. Do not infer coverage standards or retention requirements.'
-  ],matrix:['ID / sequence','Topic / camera, monitoring, or video function','Planning Guidance','Considerations / Impacts','Issue / Open Question number','Owner','Evidence']},
-  security_secured_locations:{name:'Security — Secured Locations',criteria:[
-    'Extract specific secured, restricted, controlled, or badge-only locations and the stated access rules for each location, including locked units, staff lounges, medication/supply rooms, behavioral-health areas, Periop, NICU/L&D access points, shell spaces, service areas, restricted floors, and other named locations.',
-    'Capture who may access each location, whether access is open, badge-controlled, key-controlled, escorted, invitation-only, communication-controlled, or restricted to specified roles, and whether access changes by time, operating hours, or emergency/code condition.',
-    'Capture controlled entry points, audio/video communication devices, intercoms, reception or nurses-station release, two-way communication, signage, access-control hardware, and relationships to patient/staff/vendor/family circulation when explicitly discussed.',
-    'Capture emergency/code access exceptions and special response access only when explicitly stated. Preserve distinctions between normal operations, after-hours access, emergency access, and egress-only conditions.',
-    'Capture decisions, proposed access models, unresolved access assignments, action items, owners, deadlines, dependencies, and evidence. Do not assume who should have access based on job title unless the source states it.'
-  ],matrix:['ID / sequence','Topic / secured location or restricted area','Planning Guidance','Considerations / Impacts','Issue / Open Question number','Owner','Evidence']},
-  general:{name:'General',criteria:[
-    'Extract facility-wide or project-wide operational information that affects daily operations across multiple departments or the facility as a whole, including operating hours, access, staffing models, shared services, policies/procedures, support functions, technology, communications, safety/security interfaces, maintenance, housekeeping, logistics, and other common operational requirements when discussed.',
-    'Capture information that does not belong exclusively to another department or work group but is important to how the facility will function day to day. Include cross-department workflows, shared resources, operational constraints, phasing/transition impacts, dependencies, and coordination requirements when explicitly discussed.',
-    'Capture decisions, proposed approaches, unresolved questions, action items, owners, deadlines, dependencies, and evidence. Do not use General as a catch-all for department-specific information that belongs in another selected work group.',
-    'Preserve exact quantities, hours, locations, responsibilities, equipment, technology, workflow details, and other measurable or operational details. Do not infer standards, policies, staffing, or requirements not supported by the transcript.'
-  ],matrix:['ID / sequence','Topic / facility-wide operational function','Planning Guidance','Considerations / Impacts','Issue / Open Question number','Owner','Evidence']},
-  primary_care:{name:'Primary Care',criteria:[
-    'Extract information relevant to the daily operation of Primary Care, including clinic functions, patient types/services, room types and counts, staffing, provider/team roles, hours, scheduling, registration/check-in, waiting, patient flow, room turnover, support spaces, equipment, supplies, storage, technology, documentation, communications, and operational support when discussed.',
-    'Capture how patients, staff, providers, equipment, supplies, specimens, medications, and other operational elements move through the department; include relationships to reception, waiting, exam/treatment rooms, procedure spaces, team work areas, clean/dirty support, labs, pharmacy, imaging, and other departments when explicitly discussed.',
-    'Capture operational requirements, decisions, proposed approaches, unresolved questions, action items, owners, deadlines, dependencies, and evidence. Keep room-specific information tied to the stated room type/name and count.',
-    'Do not infer clinical standards, staffing ratios, room requirements, equipment, workflows, or policies that are not supported by the transcript.'
-  ],matrix:['ID / sequence','Topic / Primary Care operational requirement','Planning Guidance','Considerations / Impacts','Issue / Open Question number','Owner','Evidence']},
-  medical_speciality_clinic:{name:'Medical Speciality Clinic',criteria:[
-    'Extract information relevant to the daily operation of Medical Speciality Clinic functions, including specialty services, patient populations, room types and counts, staffing, provider/team roles, hours, scheduling, registration/check-in, waiting, patient flow, room turnover, support spaces, equipment, supplies, storage, technology, documentation, communications, and operational support when discussed.',
-    'Capture specialty-specific workflows, patient movement, staff movement, equipment/supply movement, consultations, procedures, shared resources, support services, and interfaces with other departments when explicitly discussed. Preserve differences between specialty functions rather than assuming they operate identically.',
-    'Capture operational requirements, decisions, proposed approaches, unresolved questions, action items, owners, deadlines, dependencies, and evidence. Keep room-specific information tied to the stated room type/name and count.',
-    'Do not infer specialty standards, staffing ratios, room requirements, equipment, workflows, or policies that are not supported by the transcript.'
-  ],matrix:['ID / sequence','Topic / Medical Speciality Clinic operational requirement','Planning Guidance','Considerations / Impacts','Issue / Open Question number','Owner','Evidence']},
-  audiology:{name:'Audiology',criteria:[
-    'Extract information relevant to the daily operation of Audiology, including services, patient types, room types and counts, staffing, provider/team roles, hours, scheduling, check-in/waiting, patient flow, room turnover, equipment, supplies, storage, technology, documentation, communications, and support spaces when discussed.',
-    'Capture operational relationships among patient rooms, testing/treatment spaces, work areas, waiting, reception, storage, equipment, staff movement, patient movement, and other departments or shared services when explicitly discussed.',
-    'Capture operational requirements, decisions, proposed approaches, unresolved questions, action items, owners, deadlines, dependencies, and evidence. Preserve named equipment, quantities, room identifiers, and workflow details exactly.',
-    'Do not infer audiology standards, staffing ratios, equipment requirements, room requirements, or policies not supported by the transcript.'
-  ],matrix:['ID / sequence','Topic / Audiology operational requirement','Planning Guidance','Considerations / Impacts','Issue / Open Question number','Owner','Evidence']},
-  whole_health:{name:'Whole Health',criteria:[
-    'Extract information relevant to the daily operation of Whole Health, including services/programs, patient types, room types and counts, staffing, provider/team roles, hours, scheduling, registration/check-in, waiting, patient flow, group or individual activities, support spaces, equipment, supplies, storage, technology, documentation, communications, and shared resources when discussed.',
-    'Capture operational relationships among consultation, treatment, group, education, wellness, administrative, waiting, staff, storage, and support spaces when those functions are explicitly discussed. Preserve how patients and staff move through the department and how it interfaces with other departments.',
-    'Capture operational requirements, decisions, proposed approaches, unresolved questions, action items, owners, deadlines, dependencies, and evidence.',
-    'Do not infer program standards, staffing ratios, room requirements, equipment, workflows, or policies not supported by the transcript.'
-  ],matrix:['ID / sequence','Topic / Whole Health operational requirement','Planning Guidance','Considerations / Impacts','Issue / Open Question number','Owner','Evidence']},
-  physical_therapy:{name:'Physical Therapy',criteria:[
-    'Extract information relevant to the daily operation of Physical Therapy, including services, patient types, room types and counts, staffing, therapist/team roles, hours, scheduling, check-in/waiting, patient flow, treatment areas, gym or open therapy areas, equipment, supplies, storage, technology, documentation, communications, and support spaces when discussed.',
-    'Capture patient and staff movement, treatment workflows, equipment storage/use, shared spaces, transfers, waiting, scheduling, room turnover, and interfaces with other rehabilitation or clinical departments when explicitly discussed.',
-    'Capture operational requirements, decisions, proposed approaches, unresolved questions, action items, owners, deadlines, dependencies, and evidence. Preserve equipment names and quantities exactly.',
-    'Do not infer therapy standards, staffing ratios, room requirements, equipment, workflows, or policies not supported by the transcript.'
-  ],matrix:['ID / sequence','Topic / Physical Therapy operational requirement','Planning Guidance','Considerations / Impacts','Issue / Open Question number','Owner','Evidence']},
-  prosthetics:{name:'Prosthetics',criteria:[
-    'Extract information relevant to the daily operation of Prosthetics, including services, patient types, room types and counts, staffing, prosthetist/team roles, hours, scheduling, check-in/waiting, patient flow, fabrication/fitting/service functions, equipment, tools, supplies, storage, technology, documentation, communications, and support spaces when discussed.',
-    'Capture relationships among patient care, evaluation/fitting, fabrication or work areas, equipment/material storage, staff work areas, delivery/pickup, cleaning, waste, and other departments when explicitly discussed.',
-    'Capture operational requirements, decisions, proposed approaches, unresolved questions, action items, owners, deadlines, dependencies, and evidence. Preserve named equipment/materials and quantities exactly.',
-    'Do not infer prosthetics standards, staffing ratios, room requirements, equipment, workflows, or policies not supported by the transcript.'
-  ],matrix:['ID / sequence','Topic / Prosthetics operational requirement','Planning Guidance','Considerations / Impacts','Issue / Open Question number','Owner','Evidence']},
-  substance_abuse_mental_health:{name:'Substance Abuse/Mental Health',criteria:[
-    'Extract information relevant to the daily operation of Substance Abuse/Mental Health services, including program functions, patient types, room types and counts, staffing, provider/team roles, hours, scheduling, intake/check-in, waiting, patient flow, individual/group functions, evaluation/treatment spaces, support spaces, equipment, supplies, storage, technology, documentation, communications, and operational support when discussed.',
-    'Capture operational requirements related to privacy, controlled or specialized patient flow, group versus individual activities, staff support, observation/monitoring, safety/security interfaces, escorts, family/visitor flow, and relationships with other departments only when explicitly discussed.',
-    'Capture operational requirements, decisions, proposed approaches, unresolved questions, action items, owners, deadlines, dependencies, and evidence. Preserve differences between programs or service types when stated.',
-    'Do not infer behavioral-health or substance-abuse standards, staffing ratios, safety requirements, room requirements, equipment, workflows, or policies not supported by the transcript.'
-  ],matrix:['ID / sequence','Topic / Substance Abuse/Mental Health operational requirement','Planning Guidance','Considerations / Impacts','Issue / Open Question number','Owner','Evidence']},
-  surgical_clinic:{name:'Surgical Clinic',criteria:[
-    'Extract information relevant to the daily operation of Surgical Clinic functions, including services, patient types, room types and counts, staffing, provider/team roles, hours, scheduling, check-in, waiting, patient flow, procedure/treatment spaces, preparation/recovery functions, equipment, supplies, storage, technology, documentation, communications, and support spaces when discussed.',
-    'Capture patient, staff, equipment, supply, specimen, and waste movement; room turnover; procedure workflows; support functions; sterile/clean/dirty interfaces; and relationships to operating rooms, imaging, laboratory, pharmacy, inpatient/outpatient areas, or other departments only when explicitly discussed.',
-    'Capture operational requirements, decisions, proposed approaches, unresolved questions, action items, owners, deadlines, dependencies, and evidence. Preserve named procedures, equipment, room types, quantities, and workflow details exactly.',
-    'Do not infer surgical standards, staffing ratios, room requirements, equipment, workflows, infection-control requirements, or policies not supported by the transcript.'
-  ],matrix:['ID / sequence','Topic / Surgical Clinic operational requirement','Planning Guidance','Considerations / Impacts','Issue / Open Question number','Owner','Evidence']},
-  eye_clinic:{name:'Eye Clinic',criteria:[
-    'Extract information relevant to the daily operation of Eye Clinic services, including patient types, room types and counts, staffing, provider/team roles, hours, scheduling, check-in/waiting, patient flow, examination/treatment/procedure functions, equipment, supplies, storage, technology, documentation, communications, and support spaces when discussed.',
-    'Capture patient and staff movement, equipment use/storage, room turnover, visual or technology interfaces, support functions, and relationships to other clinical departments when explicitly discussed.',
-    'Capture operational requirements, decisions, proposed approaches, unresolved questions, action items, owners, deadlines, dependencies, and evidence. Preserve named equipment, room identifiers, quantities, and workflow details exactly.',
-    'Do not infer ophthalmology standards, staffing ratios, room requirements, equipment, workflows, or policies not supported by the transcript.'
-  ],matrix:['ID / sequence','Topic / Eye Clinic operational requirement','Planning Guidance','Considerations / Impacts','Issue / Open Question number','Owner','Evidence']},
-  dental_clinic:{name:'Dental Clinic',criteria:[
-    'Extract information relevant to the daily operation of Dental Clinic functions, including services, patient types, operatories and other room types/counts, staffing, provider/team roles, hours, scheduling, registration/check-in, waiting, patient flow, treatment/procedure workflows, equipment, supplies, storage, technology, documentation, communications, and support spaces when discussed.',
-    'Capture relationships among operatories, procedure spaces, sterilization, clean/dirty flow, instrument/equipment movement, supply storage, laboratory or dental lab interfaces, staff work areas, waiting/reception, and other departments when explicitly discussed.',
-    'Capture operational requirements, decisions, proposed approaches, unresolved questions, action items, owners, deadlines, dependencies, and evidence. Preserve named dental equipment, quantities, room identifiers, and workflow details exactly.',
-    'Do not infer dental standards, staffing ratios, room requirements, equipment, sterilization requirements, workflows, or policies not supported by the transcript.'
-  ],matrix:['ID / sequence','Topic / Dental Clinic operational requirement','Planning Guidance','Considerations / Impacts','Issue / Open Question number','Owner','Evidence']},
-  diagnostic_xray_flouro:{name:'Diagnostic X-Ray/Flouro',criteria:[
-    'Extract the Diagnostic X-ray / Flouro program as a distinct imaging work group, preserving room quantities, modality type, hours, staffing, dedicated support, procedures, equipment, and operational constraints exactly as discussed.',
-    'Capture the stated program of 4 Radiology rooms and 1 Fluoro room, Diagnostic X-ray / Flouro operating hours, flexibility to expand hours based on need, and any staffing/staggering requirements tied to workload.',
-    'Capture OR support requirements, including the dedicated Radiology technologist for the OR Suites, ability to call for additional assistance case by case, and management of portable C-arms by Radiology.',
-    'Capture Fluoroscopy scope, including the stated limitation that no advanced procedures will be performed in Fluoroscopy.',
-    'Capture unresolved equipment questions such as whether portable X-ray machines are required. Preserve the question and responsible party only when explicitly stated.',
-    'Capture planning guidance, operational impacts, issue numbers, decisions, proposals, open questions, owners, and evidence. Do not infer imaging standards, staffing ratios, equipment requirements, or procedure scope beyond the source material.'
-  ],matrix:['ID / sequence','Topic / Diagnostic X-Ray/Flouro operational requirement','Planning Guidance','Considerations / Impacts','Issue / Open Question number','Owner','Evidence']},
-  ct_mri:{name:'CT/MRI',criteria:[
-    'Extract CT and MRI operations separately where requirements differ, preserving modality quantities, hours, procedures, staffing, access, contrast processes, sedation/anxiolytic workflows, equipment, and operational constraints exactly as discussed.',
-    'For CT, capture the stated quantity of two CT machines, CT hours of 8:00–4:30 with flexibility to expand, oral contrast workflow including same-day administration and one-hour early arrival, and the option for contrast to be mailed from Pharmacy.',
-    'Capture IV contrast workflow, including Radiology physician oversight, same-day ordering, supply availability, contrast storage in a locked humidity- and temperature-controlled area, and Logistics coordination for par levels and ordering.',
-    'Capture CT-guided/minor procedures and nursing support, including that nurses are available for CT-guided procedures, are dedicated to Radiology, and report to Department of Nursing.',
-    'For MRI, capture the two MRI units and their stated strengths of 1.5 and 3.0, MRI hours of 7:00–4:30, access-control validation for Zones 2 and 3, and the stated restriction against implant or pacemaker patients because staffing will not support them.',
-    'Capture MRI procedures and exceptions, including breast biopsy when the patient is an appropriate candidate, and the anxiolytic process in which the ordering physician places the order, medication is mailed to the patient, and a driver must check in with the patient before the procedure.',
-    'Capture decisions, proposed approaches, unresolved questions, action items, owners, deadlines, dependencies, issue numbers, and evidence. Do not infer MRI safety requirements, contrast standards, staffing ratios, or procedural capabilities not supported by the source.'
-  ],matrix:['ID / sequence','Topic / CT/MRI operational requirement','Planning Guidance','Considerations / Impacts','Issue / Open Question number','Owner','Evidence']},
-  mammo_ultrasound:{name:'Mammo/Ultrasound',criteria:[
-    'Extract Mammography and Ultrasound operations separately where requirements differ, preserving hours, room quantities, staffing, patient populations, procedures, equipment/support, imaging workflows, and operational constraints exactly as discussed.',
-    'For Ultrasound, capture stated operating hours of 8:00–4:30, first patient scheduled at 8:15 and last patient at 4:00, two diagnostic Ultrasound rooms, and the fact that both male and female patients are served in the Ultrasound/Mammo area.',
-    'Capture the distinction between Ultrasound performed outside Radiology as point-of-care imaging and imaging stored in PACS, including the stated referral to Imaging for more definitive study when needed.',
-    'Capture transvaginal Ultrasound operations and the stated location of the Trophon within SPS.',
-    'For Mammography, capture two diagnostic mammography rooms and one stereotactic biopsy suite, dedicated providers, non-shared technologists, and the stated need for immediate reads and procedure support.',
-    'Capture Mammography services including routine screening, diagnostic imaging, and stereotactic biopsy; breast localizations performed pre-op in Ultrasound and Mammography and then sent to Surgery; and routine breast biopsies generally performed without a cytotech, with procedures involving a Cytologist generally scheduled one week in advance.',
-    'Capture decisions, proposals, operational impacts, unresolved questions, actions, owners, deadlines, dependencies, issue numbers, and evidence. Do not infer mammography/ultrasound standards, staffing ratios, equipment requirements, or procedural requirements not supported by the source.'
-  ],matrix:['ID / sequence','Topic / Mammo/Ultrasound operational requirement','Planning Guidance','Considerations / Impacts','Issue / Open Question number','Owner','Evidence']},
-  nuclear_med:{name:'Nuclear Med',criteria:[
-    'Extract Nuclear Medicine operations as a distinct modality/work group, preserving services, hours, patient hours, staffing/licensing dependencies, isotope/nucleotide delivery, procedure support, and operational constraints exactly as discussed.',
-    'Capture the stated Nuclear Medicine services: PET CT, SPECT CT, Cardiac CT, Stress Testing, and Bone Densitometry.',
-    'Capture the stated scope that Nuclear Medicine will provide diagnostic services only and no therapy.',
-    'Capture licensing dependency, specifically that Nuclear Medicine licensing will not occur until a technologist is hired for the facility.',
-    'Capture staffing hours of 6:00 am–4:30 pm and patient hours of 7:30 am–3:00 pm.',
-    'Capture nucleotide delivery requirements, including restricted delivery, escort of delivery personnel, delivery through the main entrance, and staff arriving early to receive nucleotide deliveries.',
-    'Capture Cardiac Stress Testing workflow, including Cardiology providing nursing staff for the procedure, Cardiology requesting clinically indicated dates, and Nuclear Medicine scheduling and ordering doses.',
-    'Capture decisions, proposed approaches, operational impacts, unresolved questions, actions, owners, deadlines, dependencies, issue numbers, and evidence. Do not infer radiation, licensing, staffing, isotope-handling, or clinical standards not supported by the source.'
-  ],matrix:['ID / sequence','Topic / Nuclear Med operational requirement','Planning Guidance','Considerations / Impacts','Issue / Open Question number','Owner','Evidence']},
-  angiography:{name:'Angiography',criteria:[
-    'Extract Angiography / Interventional Radiology operations as a distinct work group, preserving room configuration, hours, services, staffing, prep/recovery functions, point-of-care testing, equipment, access, and validation needs exactly as discussed.',
-    'Capture the stated configuration of one Interventional Radiology suite with a prep/recovery space adjacent to the procedure room.',
-    'Capture procedure hours: staff present at 6:00 am, procedures starting at 7:00 am, last patient at 2:00 pm, and end of day at 4:30 pm.',
-    'Capture service scope, including Angiography being provided case by case for patients meeting criteria for an outpatient setting, and an Interventionalist on site five days per week.',
-    'Capture Prep/Recovery point-of-care testing for Glucose, Chem 7, and INR.',
-    'Capture explicit validation items: door sizes into Angiography; code cart programming for Angiography; physiologic monitoring in Prep/Recovery, IR, and CT; refrigerator and ice machine for Prep/Recovery; and blanket warmer for Prep/Recovery.',
-    'Capture the nutrition-item question for IR and Nuclear Medicine and preserve the stated dependency that it is to be addressed in the Nutrition Workgroup.',
-    'Capture planning guidance, considerations/impacts, issue numbers, decisions, proposals, unresolved questions, owners, actions, dependencies, and evidence. Do not infer procedural, staffing, monitoring, equipment, or code requirements beyond the source.'
-  ],matrix:['ID / sequence','Topic / Angiography operational requirement','Planning Guidance','Considerations / Impacts','Issue / Open Question number','Owner','Evidence']},
-  custom:{name:'Custom Work Group',criteria:['Apply the same healthcare planning extraction framework to the custom work group. Extract only transcript-supported information directly relevant to that group. Do not infer standards, requirements, owners, or evidence.'],matrix:['ID / sequence','Topic','Planning Guidance','Considerations / Impacts','Issue / Open Question number','Owner','Evidence']}
-};
-function getWorkGroupConfig(name){return WORK_GROUP_LIBRARY[name]||WORK_GROUP_LIBRARY.Custom}
-function getSelectedWorkGroupSheets(topics){return topics.map(getWorkGroupConfig).map(x=>x.sheet)}
-function getSelectedWorkGroupInstruction(topics){return topics.map((name,i)=>{const cfg=getWorkGroupConfig(name);return (i+1)+'. '+name+' — dedicated worksheet: '+cfg.sheet}).join('\n')}
-function getSelectedWorkGroupProfiles(topics){return topics.map(name=>{const cfg=getWorkGroupConfig(name);return WORK_GROUP_PROFILES[cfg.profileKey]||WORK_GROUP_PROFILES.custom})}
-function getSelectedWorkGroupCriteria(topics){return getSelectedWorkGroupProfiles(topics).map(profile=>profile.name.toUpperCase()+' PROFILE:\n'+profile.criteria.map(x=>'- '+x).join('\n')+'\n\n'+profile.name.toUpperCase()+' TARGET MATRIX FIELDS:\n'+profile.matrix.map(x=>'- '+x).join('\n')).join('\n\n')}
-function getSelectedWorkGroupOutputInstructions(topics){return getSelectedWorkGroupProfiles(topics).map((profile,i)=>(i+1)+'. '+profile.name+' — dedicated operational planning matrix: '+profile.matrix.join(' | ')).join('\n')}
-function syncGroups(){
-  const selected=[...groupSelect.selectedOptions].map(o=>o.value);
-  const custom=customGroups.value.split(/\n|,/).map(x=>x.trim()).filter(Boolean);
-  const groups=[...new Set([...selected,...custom])];
-  topicsEl.value=groups.join('\n');
-  renderChips();
-  const profileStatus=document.getElementById('profileStatus');
-  if(profileStatus) profileStatus.textContent=groups.length+' work-group profile'+(groups.length===1?'':'s')+' selected. Standard profiles are modular; custom groups use the same planning-matrix and no-inference framework.';
-}
-function renderChips(){
-  chips.innerHTML='';
-  topicsEl.value.split(/\n|,/).map(x=>x.trim()).filter(Boolean).forEach(x=>{
-    const s=document.createElement('span');s.className='topic';s.textContent=x;chips.appendChild(s);
-  });
-}
-groupSelect.addEventListener('change',syncGroups);customGroups.addEventListener('input',syncGroups);topicsEl.addEventListener('input',renderChips);syncGroups();
-document.getElementById('clear').onclick=()=>{
-  transcript.value='';output.value='';status.style.display='none';report.style.display='none';empty.style.display='block';
-};
-document.getElementById('run').onclick=()=>{
-  const topics=topicsEl.value.split(/\n|,/).map(x=>x.trim()).filter(Boolean);
-  if(!topics.length||!transcript.value.trim()){status.style.display='block';status.textContent='Add topic areas and paste the transcript first.';return}
-  const context=document.getElementById('context').value.trim();
-  const prompt = [
-    'You are a healthcare planning meeting analyst. Review the Read AI transcript below and create a concise, highly readable planning brief for healthcare project planning. Prioritize accuracy, traceability, decisions, ownership, and follow-up. Multiple work groups may be active within the same project, so keep each work group clearly separated, concise, and limited to information directly relevant to that work group. Avoid repeating the same information across work groups unless the overlap is necessary to understand a dependency or coordination issue. The final deliverable must be structured so ChatGPT can create an Excel workbook from the extracted information when file creation is available.',
-    '', 'SPREADSHEET TITLE: ' + (context || 'Healthcare Planning Report'),
-    'EXCEL FILE / REPORT TITLE INSTRUCTION: Use the Spreadsheet Title above as the title of the Excel workbook and as the primary report title. If the title is provided, preserve it exactly. Do not replace it with a generic meeting title. If no title is provided, use “Healthcare Planning Report”.',
-    '', 'WORK GROUPS TO EXTRACT:', getSelectedWorkGroupInstruction(topics),
-    '', 'WORK GROUP CONFIGURATION RULE: Treat the selected work groups above as modular profiles. Apply each selected profile only to information relevant to that work group. Each selected work group receives its own Excel worksheet using the configured worksheet name. Do not create worksheets for unselected work groups. Custom work groups should be treated as focused profiles using the same planning-matrix structure and no-inference rules.',
-    '', 'WORK GROUP-SPECIFIC EXTRACTION CRITERIA:', getSelectedWorkGroupCriteria(topics),
-    '', 'PROFILE APPLICATION RULES:',
-    '- Apply only the selected profiles above. Do not include criteria for unselected work groups.',
-    '- Model each selected profile as an operational planning matrix, not a generic checklist.',
-    '- For each selected profile, distinguish PLANNING GUIDANCE from CONSIDERATIONS / IMPACTS and capture ISSUES / OPEN ITEMS separately.',
-    '- Preserve relationships to other work groups only when they materially affect planning; avoid duplication.',
-    '- Capture OWNER only when explicitly supported and preserve EVIDENCE using available speaker/timestamp/section information.',
-    '- Preserve exact quantities, dimensions, locations, identifiers, dates, phases, capacities, and other measurable details. Do not normalize or reinterpret them.',
-    '- Use “Not specified” only when structurally needed. Never invent information.',
-    '', 'DEPARTMENT → ROOM TYPE RULES:',
-    '- Identify every department represented in the transcript and keep departments separate.',
-    '- Within each department, organize information by room type.',
-    '- Group same-type rooms only when their requirements are materially the same, and explicitly state the number of rooms.',
-    '- Never merge the same room type across different departments.',
-    '- If same-type rooms have materially different requirements, separate them.',
-    '- Preserve room names/numbers when stated. Put facility-wide requirements in a separate section.',
-    '- Never invent departments, room types, room counts, or assignments.',
-    '', 'CORE RULES:',
-    '- Use only information supported by the transcript. Never infer or fill gaps with outside knowledge.',
-    '- Keep each selected work group concise and self-contained. Extract only information relevant to that work group, and avoid duplicating details already captured under another work group unless the transcript establishes a meaningful cross-work-group dependency, conflict, or coordination requirement.',
-    '- When multiple work groups discuss the same topic, assign the information to the most appropriate work group and reference the cross-work-group relationship only when it materially affects planning.',
-    '- Distinguish CONFIRMED DECISION, PROPOSED/SUGGESTED, DISCUSSED, and UNRESOLVED.',
-    '- Flag conflicting statements rather than choosing a side.',
-    '- If information is absent, write “Not specified.”',
-    '- Preserve quantities, dimensions, equipment, staffing, dates, responsibilities, dependencies, constraints, costs, and operational requirements.',
-    '- Separate action items from discussion.',
-    '', 'EVIDENCE SOURCING:',
-    '- Cite important decisions, requirements, action items, unresolved issues, and factual details when evidence is available.',
-    '- Use [Evidence: Speaker — timestamp], [Evidence: Speaker — transcript section], [Evidence: timestamp], or [Evidence: Speaker].',
-    '- Never fabricate timestamps, speakers, or section names.',
-    '', 'OUTPUT FORMAT:',
-    '1. EXECUTIVE SUMMARY',
-    '2. KEY DECISIONS',
-    '3. SELECTED WORK-GROUP MATRICES — provide a dedicated operational planning matrix for each selected work group. Before the work-group-specific matrices, create a GENERAL section containing only facility-wide or project-wide details that apply across multiple selected work groups or the facility as a whole. Do not repeat those General details in each work-group matrix unless the transcript contains a work-group-specific application, decision, impact, or dependency that materially needs to be captured there. Use the configured matrix fields below and keep each work group clearly separated. '+getSelectedWorkGroupOutputInstructions(topics)+'. Keep the spreadsheet-style distinction between established guidance, operational impacts, and unresolved issues. Do not force information into a field when the transcript does not support it.',
-    '4. FACILITY-WIDE / CROSS-DEPARTMENT REQUIREMENTS',
-    '5. DEPARTMENT-BY-DEPARTMENT REQUIREMENTS — for each department, organize by room type and include room count, requirements, equipment, staffing, workflow/patient flow, technology, operational needs, decisions, open questions, and evidence.',
-    '6. ACTION ITEMS — Action | Owner | Deadline | Department/Room | Dependency | Evidence',
-    '7. OPEN QUESTIONS / INFORMATION GAPS',
-    '8. RISKS / DEPENDENCIES',
-    '9. TIMELINE / MILESTONES',
-    '10. EXCEL WORKBOOK DELIVERABLE — After completing the analysis, create ONE Excel (.xlsx) workbook containing the entire planning deliverable. Use the Spreadsheet Title exactly as the workbook/report title and, when supported, as the filename. Do not create separate workbooks for individual work groups. Do not merely describe the spreadsheet; actually create the workbook when file creation is available. Use separate worksheets for the selected work-group worksheets listed above plus the core project worksheets: Executive Summary, Key Decisions, Facility-Wide Requirements, Department Requirements, Action Items, Open Questions, Risks & Dependencies, Timeline / Milestones, and Notes & Concerns. The selected work-group worksheets are: '+getSelectedWorkGroupSheets(topics).join(' | ')+'. Every generated worksheet must follow this permanent five-part structure in this exact order: 1. WORK GROUPS, 2. WORK GROUP MEMBERS, 3. GENERAL, 4. selected work-group content, 5. NOTES & CONCERNS. WORK GROUPS and WORK GROUP MEMBERS remain the first two sections. Under WORK GROUPS, list the work groups selected for the meeting; under WORK GROUP MEMBERS, list only explicitly identified members/participants/owners and preserve their roles when stated. Under GENERAL, list only facility-wide or project-wide details that apply across multiple selected work groups or the facility as a whole, so these details have one central location and are not repeated under each specific group. Do not place department-specific or work-group-specific requirements in General. After General, place the applicable selected work-group operational planning matrix content. NOTES & CONCERNS must always be the fifth and final section, after all work-group content, and must capture important observations, concerns, caveats, coordination concerns, validation needs, or notable planning comments that do not fit cleanly in the primary matrices. Do not use Notes & Concerns as a catch-all for items that belong in General, work-group matrices, Action Items, Open Questions, Risks & Dependencies, or Timeline / Milestones. For the core project worksheets, apply the same five-part opening/closing structure and place the applicable project-level content in section 4 where appropriate. Do not invent members, work groups, or concerns. Preserve the same department → room type structure in the workbook. Use clear section headers, clear column headers, one actionable item or requirement per row, readable widths, wrapped text, frozen header rows, filters where useful, and consistent formatting. Preserve evidence references in a dedicated Evidence column. Do not invent data. If a worksheet has no supported information, either omit it or clearly mark it “No supported information identified.”',
-    '11. NOTES & CONCERNS — Add a dedicated “Notes & Concerns” worksheet as the final worksheet in the workbook. Use this section to capture the red-note style items from the example Excel workbooks: important observations, concerns, caveats, follow-up notes, coordination concerns, validation needs, and other notable planning comments that do not fit cleanly into the primary matrices. Preserve the source meaning and distinguish confirmed concerns from discussion or proposed concerns. Include Evidence and Owner when explicitly supported. Do not invent concerns, and do not use this worksheet as a catch-all for information that belongs in a selected work-group matrix, Action Items, Open Questions, Risks & Dependencies, or Timeline / Milestones.',
-    '', 'QUALITY CHECK:',
-    '- Do not invent facts. Do not merge departments. Do not merge same room types across departments.',
-    '- Group rooms only when requirements are materially the same and state the room count.',
-    '- Verify owners, deadlines, decisions, and evidence references.',
-    '- Keep the final report concise enough for leadership to scan while retaining actionable planning detail. Because multiple work groups may be included in one project, favor short, distinct work-group sections over repetitive narrative.',
-    '- The Excel workbook is the structured project-planning deliverable; ensure important extracted details are represented in workbook rows and columns rather than only in narrative prose.',
-    '', 'READ AI TRANSCRIPT:', transcript.value
-  ].join('\n');
-  output.value=prompt;
-  output.focus();
-  status.style.display='block';status.textContent='Prompt created. Copy it into ChatGPT.';
-  empty.style.display='none';report.style.display='block';
-  document.getElementById('reportTitle').textContent=(document.getElementById('context').value||'Healthcare Planning Report')+' — Planning Brief';
-};
-document.getElementById('copy').onclick=async()=>{try{if(navigator.clipboard&&window.isSecureContext){await navigator.clipboard.writeText(output.value)}else{const temp=document.createElement('textarea');temp.value=output.value;temp.style.position='fixed';temp.style.opacity='0';document.body.appendChild(temp);temp.focus();temp.select();document.execCommand('copy');document.body.removeChild(temp)}status.style.display='block';status.textContent='Copied. Paste it into ChatGPT.'}catch(e){output.focus();output.select();status.style.display='block';status.textContent='Prompt selected. Tap and hold to copy.'}};
+const select=document.getElementById('groupSelect'),custom=document.getElementById('customGroups'),preview=document.getElementById('selectedPreview'),transcript=document.getElementById('transcript'),output=document.getElementById('output'),status=document.getElementById('status');
+function groups(){const selected=[...select.selectedOptions].map(o=>o.value);const extra=custom.value.split(/\n|,/).map(x=>x.trim()).filter(Boolean);return [...new Set([...selected,...extra])]}
+function esc(s){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+function render(){const g=groups();preview.innerHTML=g.length?'<div class="notice"><strong>Selected work groups — listed sequentially in the final workbook:</strong></div>'+g.map((x,i)=>`<div class="selected-item"><b>${i+1}. ${esc(x)}</b></div>`).join(''):'<div class="notice">No work groups selected yet.</div>'}
+select.addEventListener('change',render);custom.addEventListener('input',render);render();
+function buildPrompt(){const g=groups(),title=document.getElementById('context').value.trim()||'Healthcare Planning Report';if(!g.length||!transcript.value.trim()){status.style.display='block';status.textContent='Select at least one work group and paste the transcript first.';return}const groupList=g.map((x,i)=>`${i+1}. ${x}`).join('\n');const prompt=`You are a healthcare planning meeting analyst. Review the Read AI transcript below and create a concise, highly readable planning brief for healthcare project planning. Prioritize accuracy, traceability, decisions, ownership, follow-up, and preservation of the meeting's actual terminology, organization, and level of detail.
+
+SPREADSHEET / REPORT TITLE: ${title}
+Preserve this title exactly as the workbook/report title. Do not replace it with a generic meeting title.
+
+PERMANENT FIVE-PART ARCHITECTURE — ALWAYS USE THIS EXACT ORDER:
+1. WORK GROUPS
+2. WORK GROUP MEMBERS
+3. GENERAL
+4. SELECTED WORK GROUPS
+5. NOTES & CONCERNS
+
+WORK GROUPS TO EXTRACT — LIST THESE ONE AFTER ANOTHER:
+${groupList}
+
+GENERAL RULE:
+General is a permanent structural section, not a selectable work group. Never include General in the selected work-group list or dropdown. Use General only for facility-wide, project-wide, or genuinely cross-department information. Do not use General as a catch-all for department-specific information.
+
+SECTION 4 — SELECTED WORK GROUPS:
+- Review the ENTIRE transcript for information relevant to each selected work group.
+- List every selected work group sequentially, one after another, on the same worksheet/page or continuous workbook section as requested.
+- Organize each work group according to the actual substance of the meeting.
+- Create natural, descriptive topic headings based on what was discussed.
+- DO NOT force every work group into identical categories such as Equipment, Staffing, Workflow, Rooms, etc. Those are possible subjects, not mandatory fields.
+- Different work groups may have completely different topic headings.
+- Do not create empty headings merely to match another work group.
+- Preserve the organization, depth, terminology, and level of detail demonstrated in the example worksheets used to train this workflow.
+- Treat the example worksheets as the model for how information should be organized, not as a rigid form that every department must fill out.
+- Extract relevant operational information broadly, but only when supported by the transcript.
+- Keep departments/work groups separate. Do not merge information merely because the subject is similar.
+- When a room, space, equipment item, staffing statement, workflow, operational requirement, decision, issue, or dependency is discussed, place it under the most appropriate meeting-derived topic within the relevant work group.
+
+WORK GROUP MEMBERS:
+- List participants/members and their roles/functions when explicitly identified.
+- Do not invent affiliations, owners, or responsibilities.
+
+STATUS DISCIPLINE:
+- Clearly distinguish CONFIRMED DECISION, PROPOSED/SUGGESTED, DISCUSSED, and UNRESOLVED/OPEN QUESTION.
+- Flag conflicting statements rather than choosing a side.
+- Do not turn a suggestion or discussion into a requirement.
+
+EVIDENCE SOURCING:
+- Preserve traceability for important facts, decisions, action items, unresolved issues, and requirements.
+- Use [Evidence: Speaker — timestamp], [Evidence: Speaker — transcript section], [Evidence: timestamp], or [Evidence: Speaker] when supported.
+- Never fabricate timestamps, speakers, section names, or evidence.
+
+NOTES & CONCERNS:
+- This is always the fifth and final section.
+- Capture important observations, concerns, caveats, coordination concerns, validation needs, conflicts, and notable planning comments that do not fit cleanly into the primary work-group topics or General.
+- Do not use Notes & Concerns as a catch-all for information that belongs elsewhere.
+
+ACCURACY / NO-INFERENCE RULES:
+- Use only information supported by the transcript and supplied example/training structure.
+- Do not fill gaps with outside knowledge.
+- Preserve exact quantities, dimensions, locations, identifiers, dates, phases, capacities, staffing numbers, responsibilities, dependencies, constraints, and other measurable details.
+- If an important field is structurally necessary but not discussed, use “Not specified.”
+- Do not invent departments, rooms, equipment, staffing, owners, decisions, deadlines, or requirements.
+
+WORKBOOK DELIVERABLE:
+Create ONE Excel workbook when file creation is available. Keep the five-part architecture intact. Do not create a rigid identical matrix for every work group. Section 4 must list the selected work groups sequentially and allow each work group to contain only the topic headings and information that the meeting actually supports. Preserve evidence in the relevant rows/entries. Keep Notes & Concerns as section 5. Use one worksheet/page when that is the configured deliverable; do not create separate worksheets merely because work groups differ unless the user explicitly requests separate worksheets.
+
+READ AI TRANSCRIPT:
+${transcript.value}`;output.value=prompt;status.style.display='block';status.textContent='Prompt created. Copy it into ChatGPT.';output.focus()}
+document.getElementById('run').onclick=buildPrompt;
+document.getElementById('clear').onclick=()=>{transcript.value='';output.value='';status.style.display='none';select.selectedIndex=-1;custom.value='';document.getElementById('context').value='';render()};
+document.getElementById('copy').onclick=async()=>{try{await navigator.clipboard.writeText(output.value);status.style.display='block';status.textContent='Copied. Paste it into ChatGPT.'}catch(e){output.focus();output.select();status.style.display='block';status.textContent='Prompt selected. Tap and hold to copy.'}};
 document.getElementById('chatgpt').onclick=()=>window.open('https://chatgpt.com/','_blank');
-function esc(s){return s.replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
 </script>
 </body>
 </html>
