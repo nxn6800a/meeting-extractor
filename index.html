@@ -3,62 +3,27 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="default">
-<meta name="apple-mobile-web-app-title" content="Meeting Extractor">
-<meta name="mobile-web-app-capable" content="yes">
 <meta name="theme-color" content="#17324D">
-<meta name="meeting-extractor-version" content="64">
+<meta name="meeting-extractor-version" content="65">
 <title>Meeting Extractor — Meeting Brief</title>
 <style>
-:root{--site-primary:#17324D;--site-secondary:#2C6E7F;--site-background:#F4F7F9;--site-on-primary:#fff;--site-on-background:#17212B;--site-font-body:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;--site-font-heading:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
-*{box-sizing:border-box}html{-webkit-text-size-adjust:100%;touch-action:manipulation}body{margin:0;font-family:var(--site-font-body);color:var(--site-on-background);background:var(--site-background)}#app{min-height:100vh;background:var(--site-background)}
-header{background:var(--site-primary);color:#fff;padding:18px 24px}.header-inner{max-width:1180px;margin:auto;display:flex;align-items:center;justify-content:space-between;gap:20px}.brand{display:flex;align-items:center;gap:12px}.logo{width:40px;height:40px;border-radius:12px;background:#fff;color:var(--site-primary);display:grid;place-items:center;font-weight:800}h1{font-size:25px;margin:0}.subtitle{opacity:.78;font-size:13px;margin-top:3px}.badge{font-size:12px;border:1px solid rgba(255,255,255,.25);padding:7px 11px;border-radius:999px}
-main{max-width:980px;margin:auto;padding:24px}.card{background:#fff;border:1px solid #DCE4EA;border-radius:16px;padding:22px;box-shadow:0 5px 18px rgba(22,43,60,.05);margin-bottom:16px}.card h2{font-size:17px;margin:0 0 7px}.card p{font-size:13px;line-height:1.5;color:#5B6975;margin:0 0 18px}label{font-size:12px;font-weight:700;display:block;margin:15px 0 7px}input,textarea,select{width:100%;border:1px solid #CDD8DF;border-radius:10px;padding:11px;font:inherit;background:#FBFCFD}textarea{min-height:220px;resize:vertical}select{min-height:320px}input:focus,textarea:focus,select:focus{outline:3px solid rgba(44,110,127,.14);border-color:var(--site-secondary)}
-.notice{font-size:11px;color:#687783;margin-top:12px;line-height:1.5}.selected-list{margin-top:10px}.selected-item{padding:9px 11px;border-bottom:1px solid #E6ECEF;font-size:12px}.selected-item:last-child{border-bottom:0}.selected-item b{color:#17324D}.actions{display:flex;gap:8px;margin-top:17px}button{border:0;border-radius:10px;padding:13px 14px;font-weight:700;cursor:pointer;touch-action:manipulation;min-height:46px}.primary{background:var(--site-secondary);color:#fff;flex:1}.secondary{background:#EEF2F5;color:#334553}.status{margin-top:14px;padding:10px 12px;border-radius:9px;background:#F0F6F7;color:#315766;font-size:12px;display:none}.output{min-height:420px}.footer{max-width:1180px;margin:auto;padding:0 30px 30px;color:#73818A;font-size:11px}@media(max-width:750px){.badge{display:none}main{padding:14px}.card{padding:17px}}@media(max-width:500px){.actions{flex-direction:column}.actions button{width:100%}}
+:root{--p:#17324D;--s:#2C6E7F;--bg:#F4F7F9}*{box-sizing:border-box}body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:#17212B;background:var(--bg)}header{background:var(--p);color:#fff;padding:18px 24px}.header-inner{max-width:1180px;margin:auto;display:flex;align-items:center;justify-content:space-between}.brand{display:flex;align-items:center;gap:12px}.logo{width:40px;height:40px;border-radius:12px;background:#fff;color:var(--p);display:grid;place-items:center;font-weight:800}h1{font-size:25px;margin:0}.subtitle{opacity:.78;font-size:13px;margin-top:3px}.badge{font-size:12px;border:1px solid #ffffff40;padding:7px 11px;border-radius:999px}main{max-width:980px;margin:auto;padding:24px}.card{background:#fff;border:1px solid #DCE4EA;border-radius:16px;padding:22px;box-shadow:0 5px 18px #162b3c0d;margin-bottom:16px}.card h2{font-size:17px;margin:0 0 7px}.card p{font-size:13px;line-height:1.5;color:#5B6975;margin:0 0 18px}label{font-size:12px;font-weight:700;display:block;margin:15px 0 7px}input,textarea,select{width:100%;border:1px solid #CDD8DF;border-radius:10px;padding:11px;font:inherit;background:#FBFCFD}textarea{min-height:220px;resize:vertical}select{min-height:320px}.notice{font-size:11px;color:#687783;margin-top:12px;line-height:1.5}.selected-list{margin-top:10px}.selected-item{padding:9px 11px;border-bottom:1px solid #E6ECEF;font-size:12px}.selected-item b{color:var(--p)}.actions{display:flex;gap:8px;margin-top:17px}button{border:0;border-radius:10px;padding:13px 14px;font-weight:700;cursor:pointer;min-height:46px}.primary{background:var(--s);color:#fff;flex:1}.secondary{background:#EEF2F5;color:#334553}.status{margin-top:14px;padding:10px 12px;border-radius:9px;background:#F0F6F7;color:#315766;font-size:12px;display:none}.output{min-height:420px}.footer{max-width:1180px;margin:auto;padding:0 30px 30px;color:#73818A;font-size:11px}@media(max-width:750px){.badge{display:none}main{padding:14px}.card{padding:17px}}@media(max-width:500px){.actions{flex-direction:column}.actions button{width:100%}}
 </style>
 </head>
 <body>
-<div id="app">
-<div style="background:#EAF3F5;color:#234F5E;padding:10px 18px;text-align:center;font-size:12px;font-weight:700">Updated Meeting Extractor • Dynamic work-group organization • General is permanent and not selectable</div>
+<div id="app"><div style="background:#EAF3F5;color:#234F5E;padding:10px 18px;text-align:center;font-size:12px;font-weight:700">Meeting Extractor v65 • Dynamic work-group organization • Permanent five-part architecture</div>
 <header><div class="header-inner"><div class="brand"><div class="logo">ME</div><div><h1>Meeting Extractor</h1><div class="subtitle">Healthcare planning meeting brief</div></div></div><div class="badge">Private-use template</div></div></header>
-<main>
-<section class="card" style="display:none" aria-hidden="true">
-<h2>Permanent report structure</h2>
-<p>The extractor always uses the same five-part architecture. The content inside each work group is generated from what was actually discussed in the meeting.</p>
-<div><div>1 WORK GROUPS</div><div>2 WORK GROUP MEMBERS</div><div>3 GENERAL</div><div>4 SELECTED WORK GROUPS</div><div>5 NOTES &amp; CONCERNS</div></div>
-<div class="notice"><strong>General is permanent.</strong> It is not a selectable work group and will never appear in the work-group dropdown. It is reserved for facility-wide, project-wide, or cross-department information.</div>
-</section>
-<section class="card">
-<label for="context">1. Spreadsheet / Report Title</label>
-<input id="context" placeholder="e.g., Patient Care Delivery Operational Guidance">
-<label for="groupSelect">2. Select applicable work groups</label>
-<select id="groupSelect" multiple aria-label="Select applicable work groups">
-<optgroup label="Flow &amp; Function"><option>Entrances &amp; Exits</option><option>Docks &amp; Deliveries</option><option>Corridors / Internal Flow</option><option>Elevators</option><option>Stairwells</option><option>Other Campus Considerations</option></optgroup>
-<optgroup label="Security"><option>Program / Staffing</option><option>Services</option><option>Communications / Alarm Systems</option><option>Access Control / Keys</option><option>Cameras</option><option>Secured Locations</option></optgroup>
-<optgroup label="Operational Guidance"><option>Primary Care</option><option>Medical Speciality Clinic</option><option>Audiology</option><option>Whole Health</option><option>Physical Therapy</option><option>Prosthetics</option><option>Substance Abuse/Mental Health</option><option>Surgical Clinic</option><option>Eye Clinic</option><option>Dental Clinic</option><option>Diagnostic X-Ray/Flouro</option><option>CT/MRI</option><option>Mammo/Ultrasound</option><option>Nuclear Med</option><option>Angiography</option></optgroup>
-</select>
-<div class="notice">General has intentionally been removed from this selectable list. Select only the work groups relevant to the meeting. Hold to select multiple on desktop; on iPhone, tap/drag through the list.</div>
-<label for="customGroups">Additional / custom work groups</label>
-<input id="customGroups" placeholder="e.g., Cardiology, Sterile Processing">
-<div id="selectedPreview" class="selected-list"></div>
-<label for="transcript">3. Paste the complete Read AI transcript / notes</label>
-<textarea id="transcript" placeholder="Paste the complete Read AI transcript here..."></textarea>
-<div class="actions"><button class="primary" id="run">Create ChatGPT prompt</button><button class="secondary" id="clear">Clear</button></div><div class="status" id="status"></div>
-</section>
-<section class="card"><h2>4. Ready-to-use ChatGPT prompt</h2><p>The generated prompt follows the updated Master Meeting Extractor rules: fixed five-part architecture, dynamic meeting-derived topics, example-worksheet organization, evidence sourcing, and no forced categories.</p><textarea id="output" class="output" placeholder="Your structured prompt will appear here..."></textarea><div class="actions"><button class="primary" id="copy">Copy prompt</button><button class="secondary" id="chatgpt">Open ChatGPT</button></div></section>
-</main><div class="footer">Meeting Extractor • Intended for healthcare planning meetings • Not a clinical decision-support tool. For team use, host this page at an approved web address and follow your organization's rules for PHI.</div>
-</div>
+<main><section class="card"><label for="context">1. Spreadsheet / Report Title</label><input id="context" placeholder="e.g., Patient Care Delivery Operational Guidance"><label for="groupSelect">2. Select applicable work groups</label><select id="groupSelect" multiple><optgroup label="Flow &amp; Function"><option>Entrances &amp; Exits</option><option>Docks &amp; Deliveries</option><option>Corridors / Internal Flow</option><option>Elevators</option><option>Stairwells</option><option>Other Campus Considerations</option></optgroup><optgroup label="Security"><option>Program / Staffing</option><option>Services</option><option>Communications / Alarm Systems</option><option>Access Control / Keys</option><option>Cameras</option><option>Secured Locations</option></optgroup><optgroup label="Operational Guidance"><option>Primary Care</option><option>Medical Speciality Clinic</option><option>Audiology</option><option>Whole Health</option><option>Physical Therapy</option><option>Prosthetics</option><option>Substance Abuse/Mental Health</option><option>Surgical Clinic</option><option>Eye Clinic</option><option>Dental Clinic</option><option>Diagnostic X-Ray/Flouro</option><option>CT/MRI</option><option>Mammo/Ultrasound</option><option>Nuclear Med</option><option>Angiography</option></optgroup></select><div class="notice">General is permanent and intentionally removed from the selectable list.</div><label for="customGroups">Additional / custom work groups</label><input id="customGroups" placeholder="e.g., Cardiology, Sterile Processing"><div id="selectedPreview" class="selected-list"></div><label for="transcript">3. Paste the complete Read AI transcript / notes</label><textarea id="transcript" placeholder="Paste the complete Read AI transcript here..."></textarea><div class="actions"><button class="primary" id="run">Create ChatGPT prompt</button><button class="secondary" id="clear">Clear</button></div><div class="status" id="status"></div></section>
+<section class="card"><h2>4. Ready-to-use ChatGPT prompt</h2><p>The generated prompt follows the permanent Master Meeting Extractor rules, including dynamic topics, work-group-specific numbering, evidence sourcing, and no forced categories.</p><textarea id="output" class="output" placeholder="Your structured prompt will appear here..."></textarea><div class="actions"><button class="primary" id="copy">Copy prompt</button><button class="secondary" id="chatgpt">Open ChatGPT</button></div></section></main><div class="footer">Meeting Extractor • Intended for healthcare planning meetings • Not a clinical decision-support tool. For team use, host this page at an approved web address and follow your organization's rules for PHI.</div></div>
 <script>
 const select=document.getElementById('groupSelect'),custom=document.getElementById('customGroups'),preview=document.getElementById('selectedPreview'),transcript=document.getElementById('transcript'),output=document.getElementById('output'),status=document.getElementById('status');
-function groups(){const selected=[...select.selectedOptions].map(o=>o.value);const extra=custom.value.split(/\n|,/).map(x=>x.trim()).filter(Boolean);return [...new Set([...selected,...extra])]}
+function groups(){const a=[...select.selectedOptions].map(o=>o.value),b=custom.value.split(/\n|,/).map(x=>x.trim()).filter(Boolean);return[...new Set([...a,...b])]}
 function esc(s){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
-function render(){const g=groups();preview.innerHTML=g.length?'<div class="notice"><strong>Selected work groups — listed sequentially in the final workbook:</strong></div>'+g.map((x,i)=>`<div class="selected-item"><b>${i+1}. ${esc(x)}</b></div>`).join(''):'<div class="notice">No work groups selected yet.</div>'}
-select.addEventListener('change',render);custom.addEventListener('input',render);render();
-function buildPrompt(){const g=groups(),title=document.getElementById('context').value.trim()||'Healthcare Planning Report';if(!g.length||!transcript.value.trim()){status.style.display='block';status.textContent='Select at least one work group and paste the transcript first.';return}const groupList=g.map((x,i)=>`${i+1}. ${x}`).join('\n');const prompt=`You are a healthcare planning meeting analyst. Review the Read AI transcript below and create a concise, highly readable planning brief for healthcare project planning. Prioritize accuracy, traceability, decisions, ownership, follow-up, and preservation of the meeting's actual terminology, organization, and level of detail.
+function render(){const g=groups();preview.innerHTML=g.length?'<div class="notice"><strong>Selected work groups — listed sequentially in the final workbook:</strong></div>'+g.map((x,i)=>`<div class="selected-item"><b>${i+1}. ${esc(x)}</b></div>`).join(''):'<div class="notice">No work groups selected yet.</div>'}select.addEventListener('change',render);custom.addEventListener('input',render);render();
+function buildPrompt(){const g=groups(),title=document.getElementById('context').value.trim()||'Healthcare Planning Report';if(!g.length||!transcript.value.trim()){status.style.display='block';status.textContent='Select at least one work group and paste the transcript first.';return}const groupList=g.map((x,i)=>`${i+1}. ${x}`).join('\n');output.value=`You are a healthcare planning meeting analyst. Review the Read AI transcript below and create a concise, highly readable planning brief for healthcare project planning. Prioritize accuracy, traceability, decisions, ownership, follow-up, and preservation of the meeting's actual terminology, organization, and level of detail.
 
 SPREADSHEET / REPORT TITLE: ${title}
-Preserve this title exactly as the workbook/report title. Do not replace it with a generic meeting title.
+Preserve this title exactly as the workbook/report title.
 
 PERMANENT FIVE-PART ARCHITECTURE — ALWAYS USE THIS EXACT ORDER:
 1. WORK GROUPS
@@ -71,28 +36,51 @@ WORK GROUPS TO EXTRACT — LIST THESE ONE AFTER ANOTHER:
 ${groupList}
 
 GENERAL RULE:
-General is a permanent structural section, not a selectable work group. Never include General in the selected work-group list or dropdown. Use General only for facility-wide, project-wide, or genuinely cross-department information. Do not use General as a catch-all for department-specific information.
+General is a permanent structural section, not a selectable work group. Use General only for facility-wide, project-wide, or genuinely cross-department information. Never use it as a catch-all for department-specific information.
 
-SECTION 4 — SELECTED WORK GROUPS:
+SECTION 4 — SELECTED WORK GROUPS — PERMANENT ITEM FORMAT:
 - Review the ENTIRE transcript for information relevant to each selected work group.
-- List every selected work group sequentially, one after another, on the same worksheet/page or continuous workbook section as requested.
-- Organize each work group according to the actual substance of the meeting.
-- Create natural, descriptive topic headings based on what was discussed.
+- List every selected work group sequentially, one after another.
+- Each work group must appear as its own distinct header.
+- Under that header, list supported meeting-derived items one after another.
+- Number items independently within each work group; numbering restarts at 1 for every work group.
+- Permanent prefixes:
+  Primary Care = PC1, PC2, PC3...
+  Physical Therapy = PT1, PT2, PT3...
+  Substance Abuse/Mental Health = MH1, MH2, MH3...
+  Surgical Clinic = SC1, SC2, SC3...
+  Eye Clinic = EC1, EC2, EC3...
+  Dental Clinic = DC1, DC2, DC3...
+  CT/MRI = CT/MRI1, CT/MRI2, CT/MRI3...
+- For other work groups, use a concise work-group-specific prefix based on the work-group name and restart numbering within that group.
+- Example:
+  Primary Care
+  PC1: [meeting-derived item]
+  PC2: [meeting-derived item]
+  PC3: [meeting-derived item]
+  Physical Therapy
+  PT1: [meeting-derived item]
+  PT2: [meeting-derived item]
+- Do not restart numbering when the subject/topic changes. Numbering is controlled only by the work group.
+- Do not combine multiple work groups into one numbered sequence.
+- If a selected work group has no transcript-supported information, list its header followed by: Not specified.
+
+SECTION 4 — TOPIC ORGANIZATION:
+- Use natural, descriptive meeting-derived topic headings only when useful.
 - DO NOT force every work group into identical categories such as Equipment, Staffing, Workflow, Rooms, etc. Those are possible subjects, not mandatory fields.
 - Different work groups may have completely different topic headings.
 - Do not create empty headings merely to match another work group.
-- Preserve the organization, depth, terminology, and level of detail demonstrated in the example worksheets used to train this workflow.
-- Treat the example worksheets as the model for how information should be organized, not as a rigid form that every department must fill out.
-- Extract relevant operational information broadly, but only when supported by the transcript.
-- Keep departments/work groups separate. Do not merge information merely because the subject is similar.
-- When a room, space, equipment item, staffing statement, workflow, operational requirement, decision, issue, or dependency is discussed, place it under the most appropriate meeting-derived topic within the relevant work group.
+- Preserve the organization, terminology, depth, and level of detail demonstrated in the example worksheets used to train this workflow.
+- Treat the examples as the model for organization, not a rigid form.
+- Keep work groups separate. Do not merge information merely because subjects are similar.
+- Place rooms, equipment, staffing, workflow, operational requirements, decisions, issues, and dependencies under the most appropriate meeting-derived topic.
+- Each numbered item should be a useful, readable planning note, not merely a category label.
 
 WORK GROUP MEMBERS:
-- List participants/members and their roles/functions when explicitly identified.
-- Do not invent affiliations, owners, or responsibilities.
+- List participants/members and roles/functions only when explicitly identified. Never invent affiliations, owners, or responsibilities.
 
 STATUS DISCIPLINE:
-- Clearly distinguish CONFIRMED DECISION, PROPOSED/SUGGESTED, DISCUSSED, and UNRESOLVED/OPEN QUESTION.
+- Distinguish CONFIRMED DECISION, PROPOSED/SUGGESTED, DISCUSSED, and UNRESOLVED/OPEN QUESTION.
 - Flag conflicting statements rather than choosing a side.
 - Do not turn a suggestion or discussion into a requirement.
 
@@ -102,9 +90,9 @@ EVIDENCE SOURCING:
 - Never fabricate timestamps, speakers, section names, or evidence.
 
 NOTES & CONCERNS:
-- This is always the fifth and final section.
-- Capture important observations, concerns, caveats, coordination concerns, validation needs, conflicts, and notable planning comments that do not fit cleanly into the primary work-group topics or General.
-- Do not use Notes & Concerns as a catch-all for information that belongs elsewhere.
+- Always the fifth and final section.
+- Capture observations, concerns, caveats, coordination concerns, validation needs, conflicts, and notable planning comments that do not fit cleanly elsewhere.
+- Do not use Notes & Concerns as a catch-all.
 
 ACCURACY / NO-INFERENCE RULES:
 - Use only information supported by the transcript and supplied example/training structure.
@@ -114,14 +102,9 @@ ACCURACY / NO-INFERENCE RULES:
 - Do not invent departments, rooms, equipment, staffing, owners, decisions, deadlines, or requirements.
 
 WORKBOOK DELIVERABLE:
-Create ONE Excel workbook when file creation is available. Keep the five-part architecture intact. Do not create a rigid identical matrix for every work group. Section 4 must list the selected work groups sequentially and allow each work group to contain only the topic headings and information that the meeting actually supports. Preserve evidence in the relevant rows/entries. Keep Notes & Concerns as section 5. Use one worksheet/page when that is the configured deliverable; do not create separate worksheets merely because work groups differ unless the user explicitly requests separate worksheets.
+Create ONE Excel workbook when file creation is available. Keep the five-part architecture intact. Section 4 must list selected work groups sequentially, each as a distinct header with independently numbered work-group-specific items. Do not create a rigid identical matrix for every work group. Preserve evidence and status in the relevant entries. Keep Notes & Concerns as section 5. Use one worksheet/page when that is the configured deliverable; do not create separate worksheets merely because work groups differ unless explicitly requested.
 
 READ AI TRANSCRIPT:
-${transcript.value}`;output.value=prompt;status.style.display='block';status.textContent='Prompt created. Copy it into ChatGPT.';output.focus()}
-document.getElementById('run').onclick=buildPrompt;
-document.getElementById('clear').onclick=()=>{transcript.value='';output.value='';status.style.display='none';select.selectedIndex=-1;custom.value='';document.getElementById('context').value='';render()};
-document.getElementById('copy').onclick=async()=>{try{await navigator.clipboard.writeText(output.value);status.style.display='block';status.textContent='Copied. Paste it into ChatGPT.'}catch(e){output.focus();output.select();status.style.display='block';status.textContent='Prompt selected. Tap and hold to copy.'}};
-document.getElementById('chatgpt').onclick=()=>window.open('https://chatgpt.com/','_blank');
-</script>
-</body>
-</html>
+${transcript.value}`;status.style.display='block';status.textContent='Prompt created. Copy it into ChatGPT.';output.focus()}
+document.getElementById('run').onclick=buildPrompt;document.getElementById('clear').onclick=()=>{transcript.value='';output.value='';status.style.display='none';select.selectedIndex=-1;custom.value='';document.getElementById('context').value='';render()};document.getElementById('copy').onclick=async()=>{try{await navigator.clipboard.writeText(output.value);status.style.display='block';status.textContent='Copied. Paste it into ChatGPT.'}catch(e){output.focus();output.select();status.style.display='block';status.textContent='Prompt selected. Tap and hold to copy.'}};document.getElementById('chatgpt').onclick=()=>window.open('https://chatgpt.com/','_blank');
+</script></body></html>
