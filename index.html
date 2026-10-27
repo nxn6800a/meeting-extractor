@@ -8,14 +8,14 @@
 <meta name="apple-mobile-web-app-title" content="Meeting Extractor">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="theme-color" content="#17324D">
-<meta name="meeting-extractor-version" content="63">
+<meta name="meeting-extractor-version" content="64">
 <title>Meeting Extractor — Meeting Brief</title>
 <style>
-:root{--site-primary:#17324D;--site-secondary:#2C6E7F;--site-background:#F4F7F9;--site-on-primary:#fff;--site-on-background:#17212B;--site-font-body:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;--site-font-heading:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;--site-heading-scale:1;--site-spacing-scale:1;--site-radius-scale:1}
+:root{--site-primary:#17324D;--site-secondary:#2C6E7F;--site-background:#F4F7F9;--site-on-primary:#fff;--site-on-background:#17212B;--site-font-body:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;--site-font-heading:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
 *{box-sizing:border-box}html{-webkit-text-size-adjust:100%;touch-action:manipulation}body{margin:0;font-family:var(--site-font-body);color:var(--site-on-background);background:var(--site-background)}#app{min-height:100vh;background:var(--site-background)}
 header{background:var(--site-primary);color:#fff;padding:18px 24px}.header-inner{max-width:1180px;margin:auto;display:flex;align-items:center;justify-content:space-between;gap:20px}.brand{display:flex;align-items:center;gap:12px}.logo{width:40px;height:40px;border-radius:12px;background:#fff;color:var(--site-primary);display:grid;place-items:center;font-weight:800}h1{font-size:25px;margin:0}.subtitle{opacity:.78;font-size:13px;margin-top:3px}.badge{font-size:12px;border:1px solid rgba(255,255,255,.25);padding:7px 11px;border-radius:999px}
 main{max-width:980px;margin:auto;padding:24px}.card{background:#fff;border:1px solid #DCE4EA;border-radius:16px;padding:22px;box-shadow:0 5px 18px rgba(22,43,60,.05);margin-bottom:16px}.card h2{font-size:17px;margin:0 0 7px}.card p{font-size:13px;line-height:1.5;color:#5B6975;margin:0 0 18px}label{font-size:12px;font-weight:700;display:block;margin:15px 0 7px}input,textarea,select{width:100%;border:1px solid #CDD8DF;border-radius:10px;padding:11px;font:inherit;background:#FBFCFD}textarea{min-height:220px;resize:vertical}select{min-height:320px}input:focus,textarea:focus,select:focus{outline:3px solid rgba(44,110,127,.14);border-color:var(--site-secondary)}
-.notice{font-size:11px;color:#687783;margin-top:12px;line-height:1.5}.structure{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin:12px 0}.structure div{border:1px solid #DCE4EA;background:#F7FAFB;border-radius:10px;padding:10px;font-size:11px;font-weight:700}.structure b{display:block;font-size:14px;color:var(--site-secondary);margin-bottom:4px}.selected-list{margin-top:10px}.selected-item{padding:9px 11px;border-bottom:1px solid #E6ECEF;font-size:12px}.selected-item:last-child{border-bottom:0}.selected-item b{color:#17324D}.actions{display:flex;gap:8px;margin-top:17px}button{border:0;border-radius:10px;padding:13px 14px;font-weight:700;cursor:pointer;touch-action:manipulation;min-height:46px}.primary{background:var(--site-secondary);color:#fff;flex:1}.secondary{background:#EEF2F5;color:#334553}.status{margin-top:14px;padding:10px 12px;border-radius:9px;background:#F0F6F7;color:#315766;font-size:12px;display:none}.output{min-height:420px}.footer{max-width:1180px;margin:auto;padding:0 30px 30px;color:#73818A;font-size:11px}@media(max-width:750px){.structure{grid-template-columns:1fr 1fr}.badge{display:none}main{padding:14px}.card{padding:17px}}@media(max-width:500px){.structure{grid-template-columns:1fr}.actions{flex-direction:column}.actions button{width:100%}}
+.notice{font-size:11px;color:#687783;margin-top:12px;line-height:1.5}.selected-list{margin-top:10px}.selected-item{padding:9px 11px;border-bottom:1px solid #E6ECEF;font-size:12px}.selected-item:last-child{border-bottom:0}.selected-item b{color:#17324D}.actions{display:flex;gap:8px;margin-top:17px}button{border:0;border-radius:10px;padding:13px 14px;font-weight:700;cursor:pointer;touch-action:manipulation;min-height:46px}.primary{background:var(--site-secondary);color:#fff;flex:1}.secondary{background:#EEF2F5;color:#334553}.status{margin-top:14px;padding:10px 12px;border-radius:9px;background:#F0F6F7;color:#315766;font-size:12px;display:none}.output{min-height:420px}.footer{max-width:1180px;margin:auto;padding:0 30px 30px;color:#73818A;font-size:11px}@media(max-width:750px){.badge{display:none}main{padding:14px}.card{padding:17px}}@media(max-width:500px){.actions{flex-direction:column}.actions button{width:100%}}
 </style>
 </head>
 <body>
@@ -23,10 +23,10 @@ main{max-width:980px;margin:auto;padding:24px}.card{background:#fff;border:1px s
 <div style="background:#EAF3F5;color:#234F5E;padding:10px 18px;text-align:center;font-size:12px;font-weight:700">Updated Meeting Extractor • Dynamic work-group organization • General is permanent and not selectable</div>
 <header><div class="header-inner"><div class="brand"><div class="logo">ME</div><div><h1>Meeting Extractor</h1><div class="subtitle">Healthcare planning meeting brief</div></div></div><div class="badge">Private-use template</div></div></header>
 <main>
-<section class="card">
+<section class="card" style="display:none" aria-hidden="true">
 <h2>Permanent report structure</h2>
 <p>The extractor always uses the same five-part architecture. The content inside each work group is generated from what was actually discussed in the meeting.</p>
-<div class="structure"><div><b>1</b>WORK GROUPS</div><div><b>2</b>WORK GROUP MEMBERS</div><div><b>3</b>GENERAL</div><div><b>4</b>SELECTED WORK GROUPS</div><div><b>5</b>NOTES &amp; CONCERNS</div></div>
+<div><div>1 WORK GROUPS</div><div>2 WORK GROUP MEMBERS</div><div>3 GENERAL</div><div>4 SELECTED WORK GROUPS</div><div>5 NOTES &amp; CONCERNS</div></div>
 <div class="notice"><strong>General is permanent.</strong> It is not a selectable work group and will never appear in the work-group dropdown. It is reserved for facility-wide, project-wide, or cross-department information.</div>
 </section>
 <section class="card">
