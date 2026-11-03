@@ -8,7 +8,7 @@
 <meta name="apple-mobile-web-app-title" content="Meeting Extractor">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="theme-color" content="#17324D">
-<meta name="meeting-extractor-version" content="67">
+<meta name="meeting-extractor-version" content="68">
 <link rel="manifest" href="data:application/manifest+json,{&quot;name&quot;:&quot;Meeting Extractor&quot;,&quot;short_name&quot;:&quot;Meeting Extractor&quot;,&quot;display&quot;:&quot;standalone&quot;,&quot;background_color&quot;:&quot;#F4F7F9&quot;,&quot;theme_color&quot;:&quot;#17324D&quot;,&quot;start_url&quot;:&quot;.&quot;}">
 <title>Meeting Extractor — Meeting Brief</title>
 <style>
@@ -78,101 +78,10 @@ footer{max-width:1180px;margin:auto;padding:0 30px 30px;color:#73818A;font-size:
 </style>
 </head>
 <body>
-<div id="app">
-<div style="background:#EAF3F5;color:#234F5E;padding:10px 18px;text-align:center;font-size:12px;font-weight:700">Simple meeting-to-brief workflow • Open in Safari for the best app-like experience</div>
-<header>
-  <div class="header-inner">
-    <div class="brand">
-      <div class="logo">CB</div>
-      <div><h1>Meeting Extractor</h1><div class="subtitle">Healthcare planning meeting brief</div></div>
-    </div>
-    <div class="badge">Private-use template</div>
-  </div>
-</header>
-<main>
-<div class="grid">
-<section class="card">
-  <label for="context">1. Spreadsheet Title</label>
-  <input id="context" placeholder="e.g., Entrances &amp; Exits Planning Report">
-  <h2>2. Set your work groups</h2>
-  <p>Keep the defaults or change them for the meeting. These work groups tell ChatGPT exactly what to extract and organize.</p>
-  <label for="groupSelect">Add applicable work groups</label>
-  <select id="groupSelect" multiple size="18" aria-label="Select applicable work groups">
-   <optgroup label="Flow &amp; Function">
-    <option>Entrances &amp; Exits</option>
-    <option>Docks &amp; Deliveries</option>
-    <option>Corridors / Internal Flow</option>
-    <option>Elevators</option>
-    <option>Stairwells</option>
-    <option>Other Campus Considerations</option>
-   </optgroup>
-   <optgroup label="Security">
-    <option>Program / Staffing</option>
-    <option>Services</option>
-    <option>Communications / Alarm Systems</option>
-    <option>Access Control / Keys</option>
-    <option>Cameras</option>
-    <option>Secured Locations</option>
-   </optgroup>
-   <optgroup label="Operational Guidance">
-    <option>General</option>
-    <option>Primary Care</option>
-    <option>Medical Speciality Clinic</option>
-    <option>Audiology</option>
-    <option>Whole Health</option>
-    <option>Physical Therapy</option>
-    <option>Prosthetics</option>
-    <option>Substance Abuse/Mental Health</option>
-    <option>Surgical Clinic</option>
-    <option>Eye Clinic</option>
-    <option>Dental Clinic</option>
-   <option>Diagnostic X-Ray/Flouro</option>
-   <option>CT/MRI</option>
-   <option>Mammo/Ultrasound</option>
-   <option>Nuclear Med</option>
-   <option>Angiography</option>
-   </optgroup>
-  </select>
-  <small style="display:block;color:#687783;font-size:11px;margin-top:7px">Select one or more. Hold to select multiple on desktop; on iPhone, tap and drag through the list. We can keep expanding this library as your needs develop.</small>
-  <label for="customGroups">Additional / custom work groups</label>
-  <input id="customGroups" placeholder="e.g., Cardiology, Sterile Processing, Security">
-  <div class="topic-list" id="chips"></div>
-  <textarea id="topics" style="display:none"></textarea>
-  <label>3. Paste the Read AI transcript / notes</label>
-  <div class="drop" id="drop">
-    <textarea id="transcript" placeholder="Paste the complete Read AI transcript here..."></textarea>
-  </div>
-  <div class="actions">
-    <button class="primary" id="run">Create ChatGPT prompt</button>
-    <button class="secondary" id="clear">Clear</button>
-  </div>
-  <div class="status" id="status"></div>
-  <div class="notice" id="profileStatus">Work-group profiles loaded: 28 standard profiles across Flow &amp; Function, Security, and Operational Guidance. Custom groups can be added without changing the core workflow.</div>
-  <div class="notice">This page does not process the transcript itself. It creates a structured prompt you can paste into ChatGPT. For team use, host this page on your organization's approved internal web server. Do not paste PHI unless your organization's approved workflow permits it. For the best iPhone experience, open the hosted Meeting Extractor page in Safari and use Share → Add to Home Screen.</div>
-</section>
-
-<section class="card">
-  <div class="right-head">
-    <div><h2>3. Ready-to-use ChatGPT prompt</h2><p>Meeting Extractor prioritizes operational readiness and Concept of Operations information, with evidence sourcing and decision tracking.</p></div>
-  </div>
-  <div id="empty">
-    <div class="drop" style="padding:55px 25px">
-      <strong>Your prompt will appear here</strong>
-      <small>Paste the transcript, set your topics, then create the prompt.</small>
-    </div>
-  </div>
-  <div class="report" id="report">
-  <div class="report-top"><strong id="reportTitle">Meeting Planning Prompt</strong></div>
-    <textarea id="output" style="min-height:360px"></textarea>
-    <div class="actions"><button class="primary" id="copy">Copy prompt</button><button class="secondary" id="chatgpt">Open ChatGPT</button></div>
-    <div id="topicReports"></div>
-  <div class="notice">The prompt prioritizes how departments will operate, identifies ConOps information gaps, limits equipment detail to operationally consequential items, separates departments, and preserves evidence references.</div>
-  </div>
-</section>
-</div>
-</main>
-<footer>Meeting Extractor v67 • Operational readiness / ConOps emphasis • Intended for healthcare planning meetings • Not a clinical decision-support tool. Host this page at an approved web address for reliable Safari/Home Screen use.</footer>
-</div>
+<div id="app"><div style="background:#EAF3F5;color:#234F5E;padding:10px 18px;text-align:center;font-size:12px;font-weight:700">Meeting Extractor v68 • Original work-group selection restored • Operational readiness / ConOps</div>
+<header><div class="header-inner"><div class="brand"><div class="logo">ME</div><div><h1>Meeting Extractor</h1><div class="subtitle">Healthcare planning meeting brief</div></div></div><div class="badge">Private-use template</div></div></header>
+<main><section class="card"><label for="context">1. Spreadsheet / Report Title</label><input id="context" placeholder="e.g., Patient Care Delivery Operational Guidance"><label for="groupSelect">2. Select applicable work groups</label><select id="groupSelect" multiple><optgroup label="Flow &amp; Function"><option>Entrances &amp; Exits</option><option>Docks &amp; Deliveries</option><option>Corridors / Internal Flow</option><option>Elevators</option><option>Stairwells</option><option>Other Campus Considerations</option></optgroup><optgroup label="Security"><option>Program / Staffing</option><option>Services</option><option>Communications / Alarm Systems</option><option>Access Control / Keys</option><option>Cameras</option><option>Secured Locations</option></optgroup><optgroup label="Operational Guidance"><option>Primary Care</option><option>Medical Speciality Clinic</option><option>Audiology</option><option>Whole Health</option><option>Physical Therapy</option><option>Prosthetics</option><option>Substance Abuse/Mental Health</option><option>Surgical Clinic</option><option>Eye Clinic</option><option>Dental Clinic</option><option>Diagnostic X-Ray/Flouro</option><option>CT/MRI</option><option>Mammo/Ultrasound</option><option>Nuclear Med</option><option>Angiography</option></optgroup></select><div class="notice">General is permanent and intentionally removed from the selectable list.</div><label for="customGroups">Additional / custom work groups</label><input id="customGroups" placeholder="e.g., Cardiology, Sterile Processing"><div id="selectedPreview" class="selected-list"></div><textarea id="topics" style="display:none"></textarea><div id="chips" style="display:none"></div><div class="notice" id="profileStatus">Operational-readiness profiles loaded.</div><label for="transcript">3. Paste the complete Read AI transcript / notes</label><textarea id="transcript" placeholder="Paste the complete Read AI transcript here..."></textarea><div class="actions"><button class="primary" id="run">Create ChatGPT prompt</button><button class="secondary" id="clear">Clear</button></div><div class="status" id="status"></div></section>
+<section class="card"><h2>4. Ready-to-use ChatGPT prompt</h2><p>The generated prompt follows the permanent Master Meeting Extractor rules, including dynamic topics, work-group-specific numbering, evidence sourcing, and no forced categories.</p><div id="empty" class="notice">Your prompt will appear here after you create it.</div><div id="report"><div class="notice"><strong id="reportTitle">Healthcare Planning Prompt</strong></div><textarea id="output" class="output" placeholder="Your structured prompt will appear here..."></textarea><div id="topicReports" style="display:none"></div></div><div class="actions"><button class="primary" id="copy">Copy prompt</button><button class="secondary" id="chatgpt">Open ChatGPT</button></div></section></main><div class="footer">Meeting Extractor • Intended for healthcare planning meetings • Not a clinical decision-support tool. For team use, host this page at an approved web address and follow your organization's rules for PHI.</div></div>
 <script>
 const topicsEl=document.getElementById('topics'), chips=document.getElementById('chips'), groupSelect=document.getElementById('groupSelect'), customGroups=document.getElementById('customGroups');
 const transcript=document.getElementById('transcript'), output=document.getElementById('output');
@@ -424,17 +333,12 @@ function syncGroups(){
   const custom=customGroups.value.split(/\n|,/).map(x=>x.trim()).filter(Boolean);
   const groups=[...new Set([...selected,...custom])];
   topicsEl.value=groups.join('\n');
-  renderChips();
+  const preview=document.getElementById('selectedPreview');
+  preview.innerHTML=groups.length?'<div class="notice"><strong>Selected work groups — listed sequentially in the final workbook:</strong></div>'+groups.map((x,i)=>'<div class="selected-item"><b>'+(i+1)+'. '+esc(x)+'</b></div>').join(''):'<div class="notice">No work groups selected yet.</div>';
   const profileStatus=document.getElementById('profileStatus');
-  if(profileStatus) profileStatus.textContent=groups.length+' work-group profile'+(groups.length===1?'':'s')+' selected. Standard profiles are modular; custom groups use the same planning-matrix and no-inference framework.';
+  if(profileStatus) profileStatus.textContent=groups.length+' work-group profile'+(groups.length===1?'':'s')+' selected. General remains permanent and is not selectable.';
 }
-function renderChips(){
-  chips.innerHTML='';
-  topicsEl.value.split(/\n|,/).map(x=>x.trim()).filter(Boolean).forEach(x=>{
-    const s=document.createElement('span');s.className='topic';s.textContent=x;chips.appendChild(s);
-  });
-}
-groupSelect.addEventListener('change',syncGroups);customGroups.addEventListener('input',syncGroups);topicsEl.addEventListener('input',renderChips);syncGroups();
+groupSelect.addEventListener('change',syncGroups);customGroups.addEventListener('input',syncGroups);syncGroups();
 document.getElementById('clear').onclick=()=>{
   transcript.value='';output.value='';status.style.display='none';report.style.display='none';empty.style.display='block';
 };
